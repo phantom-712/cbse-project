@@ -1,0 +1,4 @@
+import mysql.connector
+c=mysql.connector.connect(host='localhost',user='root',passwd='siddharth@200506',database='sid')
+if c.is_connected():
+   print("Connected....")
