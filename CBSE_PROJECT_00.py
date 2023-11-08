@@ -1,3 +1,6 @@
+'''
+Its the base of the home page part which creates the basic tables. and braches out to others.
+'''
 import mysql.connector
 con=mysql.connector.connect(host='localhost',password='admin',user='root')
 
