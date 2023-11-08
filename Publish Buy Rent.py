@@ -27,7 +27,7 @@ def BuyOrRent():
     if Nom==3:
         b=input("Enter the name of the book you want to rent:")
         print("To rent the book-",b,'/t',"You have to pay ₹100 per week")
-    return(g)
+    return(b)
 if Nom==1:
     publish()
     print("Congrats! Your book/s have been published.")
