@@ -1,9 +1,9 @@
 Nom=int(input("Enter 1. if you want to publish your book/s, 2. if you want to Buy a book, 3. if you want to rent a book"))
-'''initialise the slot_no var'''
 def publish():
     n=int(input("Num of books you want to publish: "))
+    slot_no=75
     for i in range(n):
-        slot_no+=75+1
+        slot_no+=1
         name=input('Enter name of book: ')
         author=input('Enter name of the author of book: ')
         genre=input('Enter genre of book: ')
