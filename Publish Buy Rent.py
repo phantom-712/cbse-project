@@ -15,6 +15,7 @@ def publish():
         con.commit()
 c,c1=0,0        
 def BuyOrRent():
+    dead_end=0
     M=int(input("Enter:",'\n','1. To see Latest in Collection, 2. To see Popular this month, 3 To Search a book by Genre: ')
     def Latest():
         c=0
@@ -89,6 +90,8 @@ def BuyOrRent():
             if Nom==3:
                 print("To rent the book-",Bk,'/t',"You have to pay ₹100 per week")
             return(Bk)
+        if c!=0:
+            dead_end+=1
     if M==1:
         Latest()
     elif M==2:
@@ -99,7 +102,7 @@ def BuyOrRent():
         Genre()
         
  #c au c1 ra purpose plz explain.   
-if c!=0:
+if dead_end!=0:
     BuyOrRent()
 if Nom==1:
     publish()
