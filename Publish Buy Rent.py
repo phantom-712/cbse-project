@@ -90,8 +90,8 @@ def BuyOrRent():
             if Nom==3:
                 print("To rent the book-",Bk,'/t',"You have to pay ₹100 per week")
             return(Bk)
-        if c!=0:
-            dead_end+=1
+    if c!=0:
+        dead_end+=1           
     if M==1:
         Latest()
     elif M==2:
