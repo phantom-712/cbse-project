@@ -1,5 +1,5 @@
 #Put this whole program under def homepage()
-Nom=int(input("Enter 1. if you want to publish your book/s\n\n2. if you want to Buy a book,\n\n3. if you want to rent a book\n\n4. Exit"))
+Nom=int(input("Enter:",'\n'," 1. if you want to publish your book/s\n\n2. if you want to Buy a book,\n\n3. if you want to rent a book\n\n4. Exit"))
 def publish():
     n=int(input("Num of books you want to publish: "))
     slot_no=75
@@ -25,8 +25,9 @@ def BuyOrRent():
             c+=1
             print("We see that you are not interested in these books, please select from other options: ") #dead end direct to buy or rent menu 
             break
+        
         else:
-            cr.execute("select * from library where name=Bk") #tu table he kichi beneinu ta ae command kahinki use karichu? suggestion: put the 4 books in a list and search for the required book  in that list and display it.
+            cr.execute("select * from booklist where name=Bk") #tu table he kichi beneinu ta ae command kahinki use karichu? suggestion: put the 4 books in a list and search for the required book  in that list and display it.
             res=cr.fetchall()
             for i in res:
                 print(i)
@@ -51,7 +52,7 @@ def BuyOrRent():
             print("We see that you are not interested in these books, please select from other options: ")#dead end direct to buy or rent menu 
             break
         else:
-            cr.execute("select * from library where name=Bk")#same mistake as in 29
+            cr.execute("select * from booklist where name=Bk")#same mistake as in 29
             res=cr.fetchall()
             for i in res:
                 print(i)
@@ -64,7 +65,7 @@ def BuyOrRent():
         c=0,c1=0
         Bk=''
         g=input("Enter the genre you want to read:","\n","1)FICTION",'/n',"2)SCIENCE FICTION",'/n',"3)MYSTERY",'/n',"4)NON FICTION",'/n',"5)ROMANCE",'/n',"6)HORROR",'/n','7)AUTOBIOGRAHY','/n','8)GRAPHIC NOVEL','/n',"9)FAIRY TALES",'/n',"10)DRAMA",'/n')
-        cr.execute("select * from library where genre=g")# will be refers to the booklist table here not library table.lib is database
+        cr.execute("select * from booklist where genre=g")# will be refers to the booklist table here not library table.lib is database
         res=cr.fetchall()
         no=1
         for i in res:
