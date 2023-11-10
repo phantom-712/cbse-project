@@ -20,6 +20,7 @@ def time_delay():
     for i in range(800):
         print("",end="")
 def start_menu():
+    wrong_choice=0
     print("\t\t\t\t\tUNREAL LIBRARY")
     x=[]
     mycursor.execute("select code from oc")# use of this command??
@@ -41,6 +42,8 @@ def start_menu():
         '''connect to buy and sell'''
     else:
         print("Wrong choice! \n Try Again. ")
+        wrong_choice=1
+        break
         # program stops here , dead end. use loop for user to try again???
 
 
@@ -68,7 +71,10 @@ def end_menu():#calculation  of total amount billing address discount  se sabu k
         else:  
             print("Thank you for visiting Unreal Library. We hope you had a great experience")
 
+
 start_menu()
+if wrong_choice!=0:
+    start_menu()
 end_menu()
         
 
