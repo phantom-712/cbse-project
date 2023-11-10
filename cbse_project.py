@@ -93,7 +93,7 @@ def entry():
     b68=[68,"THE QUEEN OF NOTHING (Series)","HOLLY BLACK","FAIRY TALE","PG-13"]
     b69=[69,"MAGIC KINGDOM (Series)","ZENITH PUBLISHING","FAIRY TALE","UA"]
     b70=[70,"HAMLET","WILLIAM SHAKESPEARE","DRAMA","UA"]
-    b71=[71,"ROMEO AND JULIET","WILLIAM SHAKESPEARE , DR. BARBARA A. MOWAT , PAUL WERSTINE","DRAMA,"UA"]
+    b71=[71,"ROMEO AND JULIET","WILLIAM SHAKESPEARE , DR. BARBARA A. MOWAT , PAUL WERSTINE","DRAMA","UA"]
     b72=[72,"THE FAULT IN OUR STARS","JOHN GREEN","DRAMA","PG-13"]
     b73=[73,"OTHELLO","WILLIAM SHAKESPEARE","DRAMA","UA"]
     b74=[74,"TWILIGHT (Series)","STEPHENIE MEYER","DRAMA","PG-13"]
@@ -110,7 +110,7 @@ def entry():
         mydb.commit()
 entry()
 
-    
+    '''jouthi no rating/all age achi seitaku UA karidaba final draft re'''
 
 
 
