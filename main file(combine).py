@@ -2,28 +2,30 @@
 Its the base of the home page part which mycursoreates the basic tables. and braches out to others.
 '''
 import mysql.connector
-    mydb = mysql.connector.connect(host='localhost', password='admin', user='root')  # enter your password
-    if mydb.is_connected():
+mydb = mysql.connector.connect(host='localhost', password='admin', user='root')  # enter your password
+if mydb.is_connected():
         print('connection with python is established...')
         mycursor = mydb.cursor()
 
         # mycursoreating and using database
-    try:
+try:
         cmd = 'create database library'
         mycursor.execute(cmd)
-    except mysql.connector.errors.DatabaseError:
+except mysql.connector.errors.DatabaseError:
         pass
-    mycursor.execute('USE library')
+ mycursor.execute('USE library')
 
     # mycursoreating and using table
 
-    try:
+try:
         cmd = "mycursorEATE TABLE booklist(Slot_No integer(5), Bookname varchar(255),Author varchar(255), Genre varchar(255), Age_Limit varchar(255))"
         mycursor.execute(cmd)
-    except mysql.connector.errors.DatabaseError:
+except mysql.connector.errors.DatabaseError:
         pass
 
-    mycursor.execute('table booklist')
+mycursor.execute('table booklist')
+
+cart=[] #to store the shopping cart of the user
 
 def homapage():
     # inserting values to booklist
@@ -151,13 +153,11 @@ def homapage():
                     print("We see that you are not interested in these books, please select from other options: ")
 
                 else:
-                    mycursor.execute("select * from booklist where name=Bk")  # tu table he kichi beneinu ta ae command kahinki use karichu? suggestion: put the 4 books in a list and search for the required book  in that list and display it.
-                    res = mycursor.fetchall()
-                    for i in res:
+                    mycursor.execute("select * from booklist where name=Bk")
+                    for i in mycursor:
                         print(i)
                     if Nom == 2:
                         print("To buy the book-", Bk, '/t', "You have to pay ₹1000")
-
                     if Nom == 3:
                         print("To rent the book-", Bk, '/t', "You have to pay ₹100 per week")
                     return (Bk)
@@ -237,11 +237,14 @@ def homapage():
             print("Your book(s) have been successfully published.")
         if Nom == 2 and dead_end==0:
             book = BuyOrRent()
-            print("Thank you for buying our book-", book)
+            cart.append(book)
+            bill()
             # direct to checkout fn/end fn
         if Nom == 3 and dead_end==0:
             book = BuyOrRent()
-            print("Thank you for renting our book-", book)
+            cart.append(book)
+            bill()
+            
             # direct to checkout fn/end fn
         if Nom == 4:
             print('Thank you for visitng UNREAL LIBRARY.')
