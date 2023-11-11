@@ -1,38 +1,35 @@
 '''
-Its the base of the home page part which creates the basic tables. and braches out to others.
+Its the base of the home page part which mycursoreates the basic tables. and braches out to others.
 '''
 import mysql.connector
-con=mysql.connector.connect(host='localhost',password='admin',user='root')
+mydb=mysql.connector.connect(host='localhost',password='admin',user='root')
 
-if con.is_connected():
+if mydb.is_connected():
     print('connection with python is established...')
-    cr = con.cursor()
+    mycursor = mydb.cursor()
 
-    #creating and using database
+    #mycursoreating and using database
     
     try:
-        cmd='create database Library'
-        cr.execute(cmd)
-        print('database created')
+        cmd='mycursoreate database Library'
+        mycursor.execute(cmd)
         
     except mysql.connector.errors.DatabaseError:
         
-        print('database already created')
+        pass
         
 
-    cr.execute('USE Library')
+    mycursor.execute('USE Library')
 
-    #creating and using table
+    #mycursoreating and using table
     
     try:
-        cmd="CREATE TABLE booklist(Slot_No integer(5), Bookname varchar(255),Author varchar(255), Genre varchar(255), Age_Limit varchar(255))"
-        cr.execute(cmd)
-        print('table created')
+        cmd="mycursorEATE TABLE booklist(Slot_No integer(5), Bookname varchar(255),Author varchar(255), Genre varchar(255), Age_Limit varchar(255))"
+        mycursor.execute(cmd)
     except mysql.connector.errors.DatabaseError:
-        print('table already created')
         pass
 
-    cr.execute('table booklist')
+    mycursor.execute('table booklist')
     
 
     #inserting values to booklist
@@ -46,8 +43,8 @@ if con.is_connected():
         print('\n')
         
         insert="insert into booklist values({},'{}','{}','{}','{}')".format(slot_no,name,author,genre,agelimit)
-        cr.execute(insert)
-        con.commit()
+        mycursor.execute(insert)
+        mydb.commit()
 
         ch=input('continue?---> c')
 
@@ -66,19 +63,10 @@ if con.is_connected():
 
     
     '''
-    cr.execute('select * from booklist')
-    booklist=cr.featchall()
+    mycursor.execute('select * from booklist')
+    booklist=mycursor.featchall()
      
     for i in booklist:
          print(i)
          '''
         
-
-
-    
-        
-    
-
-    
-        
-    
