@@ -3,23 +3,24 @@ import mysql.connector
 mydb = mysql.connector.connect(host="localhost",user="root",passwd="cbseproject",database='library')#set password as your own device
 mycursor = mydb.cursor()
 mycursor.execute("use library")
-try:
-    mycursor.execute("create table oc (name varchar(220) , code varchar(250))")
+def default():
+    try:
+        mycursor.execute("create table oc (name varchar(220) , code varchar(250))")
     
-except mysql.connector.errors.ProgrammingError:
-    pass
+    except mysql.connector.errors.ProgrammingError:
+        pass
     
-a=["Ansuman Patra","1001"]
-b=["Anwesh Dash","1002"]
-c=["Bhoumesh Mohapatra","1003"]
-d=["Shataayu Mohanty","1004"]
-e=["Siddharth Anand","1005"]
-l=[a,b,c,d,e]
-#storing pre defined user values
-for i in range(0,5):
-    ins="insert into oc values('{}','{}')".format(l[i][0], l[i][1])#oc is table under library
-    mycursor.execute(ins)
-    mydb.commit()   
+    a=["Ansuman Patra","1001"]
+    b=["Anwesh Dash","1002"]
+    c=["Bhoumesh Mohapatra","1003"]
+    d=["Shataayu Mohanty","1004"]
+    e=["Siddharth Anand","1005"]
+    l=[a,b,c,d,e]
+    #storing pre defined user values
+    for i in range(0,5):
+        ins="insert into oc values('{}','{}')".format(l[i][0], l[i][1])#oc is table under library
+        mycursor.execute(ins)
+        mydb.commit()   
     
 def time_delay():
     for i in range(800):
@@ -88,10 +89,11 @@ def end_menu():#calculation  of total amount billing address discount add here.
         else:  
             print("Thank you for visiting Unreal Library. We hope you had a great experience")
 
-
+default()
 start_menu()
 if wrong_choice!=0:
     start_menu()
+hompage()    
 end_menu()
         
 
