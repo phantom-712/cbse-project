@@ -2,8 +2,12 @@ import mysql.connector
 mydb = mysql.connector.connect(host="localhost",user="root",passwd="cbseproject",database='library')
 mycursor = mydb.cursor()
 mycursor.execute("use library")
-'''mycursor.execute("create table oc (name varchar(220) , code varchar(250))")''' # PUT UNDER TRY AND EXCEPTION HANDLING FOR MULTIPLE USE
-'''remove the above comment and write it as a line in the main program'''
+try:
+    mycursor.execute("create table oc (name varchar(220) , code varchar(250))")
+    
+except mysql.connector.errors.ProgrammingError:
+    pass
+    
 a=["Ansuman Patra","1001"]
 b=["Anwesh Dash","1002"]
 c=["Bhoumesh Mohapatra","1003"]
@@ -14,16 +18,17 @@ l=[a,b,c,d,e]
 for i in range(0,5):
     ins="insert into oc values('{}','{}')".format(l[i][0], l[i][1])#oc is table under library
     mycursor.execute(ins)
-    mydb.commit()
-#time delay purpose?    
+    mydb.commit()   
+    
 def time_delay():
     for i in range(800):
         print("",end="")
+        
 def start_menu():
     wrong_choice=0
     print("\t\t\t\t\tUNREAL LIBRARY")
     x=[]
-    mycursor.execute("select code from oc")# use of this command??
+    mycursor.execute("select code from oc")
     for y in mycursor:
         x.append(y)
     print("WELCOME!")
@@ -44,10 +49,8 @@ def start_menu():
         print("Wrong choice! \n Try Again. ")
         wrong_choice=1
         break
-        # program stops here , dead end. use loop for user to try again???
-
-
-def end_menu():#calculation  of total amount billing address discount  se sabu kauthi???
+        
+def end_menu():#calculation  of total amount billing address discount add here.
     print("To enter again press R and any other key to exit: ")
     CH = input()
     if CH =="R"or CH == "r":
@@ -58,7 +61,20 @@ def end_menu():#calculation  of total amount billing address discount  se sabu k
         print("We would like to give you a special reward")
         time_delay()
         nc =input("Please enter your name: ")
-        cc=input("Please enter a random code(4digit): ")#you already gave the code to reddem discount in start menu why this refer line 40??
+        while True:
+             cc=input("Please enter a user code greater than 2000 (4digit): ")
+             mycursor.execute("select code from oc")
+             choice=1
+             for existingcode in mycursor:
+                 if existingcode == cc:
+                     choice=-1
+                  break
+                 
+             if choice==-1:
+                 print('This user code already exist .Please Try again!')
+             else:
+                 break
+        
         print("You will be using this code to avail a discount in your next visit")
         ins="insert into oc values('{}','{}')".format(nc,cc)
         mycursor.execute(ins)
