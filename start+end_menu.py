@@ -1,5 +1,6 @@
 import mysql.connector
-mydb = mysql.connector.connect(host="localhost",user="root",passwd="cbseproject",database='library')
+#pass=input('Enter password')
+mydb = mysql.connector.connect(host="localhost",user="root",passwd="cbseproject",database='library')#set password as your own device
 mycursor = mydb.cursor()
 mycursor.execute("use library")
 try:
