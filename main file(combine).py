@@ -22,13 +22,17 @@ try:
         mycursor.execute(cmd)
 except mysql.connector.errors.DatabaseError:
         pass
-
-mycursor.execute('table booklist')
+try:
+        mycursor.execute("create table oc (name varchar(220) , code varchar(250))")
+    
+except mysql.connector.errors.ProgrammingError:
+        pass
 
 cart=[] #to store the shopping cart of the user
 
 def homapage():
     # inserting values to booklist
+    mycursor.execute('table booklist')    
     def booklist_():
 
         b1 = [1, "ULYSSES", "JAMES JOYCE", "FICTION", "PG-13"]
@@ -259,14 +263,19 @@ def homapage():
         
     def bill():
      if Nom==2: 
-        n= len(l)
+        n= len(cart)
         amt = n*1000
         print("Sl No.","Book","Price",sep="\t")
         for i in range(n):
-            print(i+1,l[i],"₹1000",sep="\t")
-        discode=input("Enter code for discount if you have any code else enter c: ")
-        if discode=="UNREAL" or discode == 'unreal':
-            amt-=500    
+            print(i+1,cart[i],"₹1000",sep="\t")
+                
+        if newcust==0 : # 1 for new cust and 0 for old     
+            discode=input("Enter code for discount if you have any code else enter c: ")
+            if discode=="UNREAL" or discode == 'unreal':
+                amt-=500    
+        elif newcust==1:
+                print("You got a newcomer discount of ₹200")
+                amt-=200
         print("Total amount  = ₹",amt)
         print("Mode of payment will be Cash On Delivery.\nThank you for buying from us")
              
@@ -275,20 +284,19 @@ def homapage():
         time=int(input("Enter for how many weeks you want to rent the book: "))
         #code unreal-500 discount
         amt=r*time
-        discode=input("Enter code for discount if you have any code else enter c: ")
-        if discode=="UNREAL" or discode == 'unreal':
-            amt-=500
+        if newcust==0 : # 1 for new cust and 0 for old     
+            discode=input("Enter code for discount if you have any code else enter c: ")
+            if discode=="UNREAL" or discode == 'unreal':
+                amt-=500    
+        elif newcust==1:
+                print("You got a newcomer discount of ₹200")
+                amt-=200
         print("Total amount  = ₹",amt)
         print("Mode of payment will be Cash On Delivery.\nThank you for renting a book from us")               
 
 
 
 def default():
-    try:
-        mycursor.execute("create table oc (name varchar(220) , code varchar(250))")
-    
-    except mysql.connector.errors.ProgrammingError:
-        pass
     
     a=["Ansuman Patra","1001"]
     b=["Anwesh Dash","1002"]
@@ -308,6 +316,7 @@ def time_delay():
         
 def start_menu():
     wrong_choice=0
+    mycursor.execute('table oc')    
     print("\t\t\t\t\tUNREAL LIBRARY")
     x=[]
     mycursor.execute("select code from oc")
@@ -321,28 +330,20 @@ def start_menu():
     time_delay()    
     ch=input("if existing user,enter the user-code or press N for new user: ")
     if ch=="N":
-        print("Welcome aboard! Please  select whether you would like to buy,rent or sell")
-        '''from here connect it to buy/purchase module'''
+        newcust=1    
+        custname=input("Welcome aboard!\nPlease enter your name: ")  
     elif (ch,) in x:#means an existing user
         time_delay()
-        print("Glad to have an old customer back.You will be receiving a special discount at the end. Just enter the code - 'UNREAL' ")
-        '''connect to buy and sell'''
+        print("Glad to have an existing customer back.You will be receiving a special discount at the end. Just enter the code - 'UNREAL' ")  
     else:
         print("Wrong choice! \n Try Again. ")
         wrong_choice=1
-        break
         
 def end_menu():#calculation  of total amount billing address discount add here.
-    print("To enter again press R and any other key to exit: ")
-    CH = input()
-    if CH =="R"or CH == "r":
-        pass
-        '''remove this pass statement in the final draft'''
-        '''direct the user to the starting not startmenu but home page'''
-    else:
+        
+        mycursor.execute('table oc')
         print("We would like to give you a special reward")
         time_delay()
-        nc =input("Please enter your name: ")
         while True:
              cc=input("Please enter a user code greater than 2000 (4digit): ")
              mycursor.execute("select code from oc")
@@ -369,6 +370,9 @@ def end_menu():#calculation  of total amount billing address discount add here.
         else:  
             print("Thank you for visiting Unreal Library. We hope you had a great experience")
 
+newcust=0
+bor=0#bor=2 for buying and 3 for renting
+custname=''
 default()
 start_menu()
 if wrong_choice!=0:
