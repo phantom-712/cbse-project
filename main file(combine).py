@@ -117,9 +117,9 @@ def homapage():
             mycursor.execute(ins)
             mydb.commit()
 
-        print("Enter:", '\n'," 1. if you want to publish your book(s)\n\n2. if you want to Buy a book,\n\n3. if you want to rent a book\n\n4. Exit\n")
-        Nom = int(input())
-        dead_end = 0
+    print("Enter:", '\n'," 1. if you want to publish your book(s)\n\n2. if you want to Buy a book,\n\n3. if you want to rent a book\n\n4. Exit\n")
+    Nom = int(input())
+    dead_end = 0
 
     def publish():
             n = int(input("Num of books you want to publish: "))
