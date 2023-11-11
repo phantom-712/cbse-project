@@ -2,7 +2,7 @@
 Its the base of the home page part which mycursoreates the basic tables. and braches out to others.
 '''
 import mysql.connector
-mydb = mysql.connector.connect(host='localhost', password='admin', user='root')  # enter your password
+mydb = mysql.connector.connect(host='localhost', password='cbseproject', user='root')  # enter your password
 if mydb.is_connected():
         print('connection with python is established...')
         mycursor = mydb.cursor()
@@ -13,9 +13,7 @@ try:
         mycursor.execute(cmd)
 except mysql.connector.errors.DatabaseError:
         pass
- mycursor.execute('USE library')
-
-    # mycursoreating and using table
+mycursor.execute('USE library')
 
 try:
         cmd = "mycursorEATE TABLE booklist(Slot_No integer(5), Bookname varchar(255),Author varchar(255), Genre varchar(255), Age_Limit varchar(255))"
@@ -30,9 +28,8 @@ except mysql.connector.errors.ProgrammingError:
 
 cart=[] #to store the shopping cart of the user
 
-def homapage():
-    # inserting values to booklist
-    mycursor.execute('table booklist')    
+def homepage():
+    # inserting values to booklist    
     def booklist_():
 
         b1 = [1, "ULYSSES", "JAMES JOYCE", "FICTION", "PG-13"]
@@ -180,7 +177,7 @@ def homapage():
                     print("We see that you are not interested in these books, please select from other options: ") 
                     return 0
                 else:
-                    mycursor.execute("select * from booklist where name=Bk")
+                    mycursor.execute(("select * from booklist where name=%s")(Bk))
                     for i in mycursor:
                         print(i)
                     if Nom == 2:
@@ -311,12 +308,11 @@ def default():
         mydb.commit()   
     
 def time_delay():
-    for i in range(800):
+    for i in range(500):
         print("",end="")
         
 def start_menu():
-    wrong_choice=0
-    mycursor.execute('table oc')    
+    wrong_choice=0 
     print("\t\t\t\t\tUNREAL LIBRARY")
     x=[]
     mycursor.execute("select code from oc")
@@ -340,18 +336,16 @@ def start_menu():
         wrong_choice=1
         
 def end_menu():#calculation  of total amount billing address discount add here.
-        
-        mycursor.execute('table oc')
         print("We would like to give you a special reward")
         time_delay()
         while True:
              cc=input("Please enter a user code greater than 2000 (4digit): ")
              mycursor.execute("select code from oc")
              choice=1
-             for existingcode in mycursor:
+             for existingcode in mycursor:                
                  if existingcode == (cc,):
                      choice=-1
-                  break
+                 break
                  
              if choice==-1:
                  print('This user code already exist .Please Try again!')
@@ -373,14 +367,10 @@ def end_menu():#calculation  of total amount billing address discount add here.
 newcust=0
 bor=0#bor=2 for buying and 3 for renting
 custname=''
+wrong_choice=0
 default()
 start_menu()
 if wrong_choice!=0:
     start_menu()
 homepage()    
 end_menu()
-
-
-
-
-
