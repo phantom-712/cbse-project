@@ -7,11 +7,11 @@ except mysql.connector.errors.DatabaseError:
     pass
 
 try:
-    mycursor.execute("create table booklist (name varchar(220) , genre varchar(250))")
+    mycursor.execute("create table booklist6 (sn Integer(10), na varchar(220), author varchar(220), gen varchar(220), al varchar(220))")
 except mysql.connector.errors.ProgrammingError:
    pass
     
-mycursor.execute("create table booklist6 (sn Integer(10), na varchar(220), author varchar(220), gen varchar(220), al varchar(220))")
+
 
 def entry():    
     b1=[1,"ULYSSES" ,"JAMES JOYCE","FICTION","PG-13"]
