@@ -151,6 +151,7 @@ def homapage():
                 if Bk == "NO" or Bk == 'no':
                     c += 1
                     print("We see that you are not interested in these books, please select from other options: ")
+                    return 0
 
                 else:
                     mycursor.execute("select * from booklist where name=Bk")
@@ -173,12 +174,11 @@ def homapage():
                 Bk = input("Enter the name of the book, if interested to get further details, else press NO: ")
                 if Bk == "NO" or Bk == 'no':
                     c += 1
-                    print(
-                        "We see that you are not interested in these books, please select from other options: ") 
+                    print("We see that you are not interested in these books, please select from other options: ") 
+                    return 0
                 else:
-                    mycursor.execute("select * from booklist where name=Bk")  # same mistake as in 29
-                    res = mycursor.fetchall()
-                    for i in res:
+                    mycursor.execute("select * from booklist where name=Bk")
+                    for i in mycursor:
                         print(i)
                     if Nom == 2:
                         print("To buy the book-", Bk, '/t', "You have to pay ₹1000")
@@ -189,16 +189,11 @@ def homapage():
             def Genre():
                 c, c1 = 0, 0
                 Bk = ''
-                print("Enter the genre you want to read:", "\n", "1)FICTION", '/n', "2)SCIENCE FICTION", '/n',
-                      "3)MYSTERY",
-                      '/n', "4)NON FICTION", '/n', "5)ROMANCE", '/n', "6)HORROR", '/n', '7)AUTOBIOGRAHY', '/n',
-                      '8)GRAPHIC NOVEL', '/n', "9)FAIRY TALES", '/n', "10)DRAMA", '/n')
+                print("Enter the genre you want to read:", "\n", "1)FICTION", '/n', "2)SCIENCE FICTION", '/n', "3)MYSTERY",'/n', "4)NON FICTION", '/n', "5)ROMANCE", '/n', "6)HORROR", '/n', '7)AUTOBIOGRAHY', '/n','8)GRAPHIC NOVEL', '/n', "9)FAIRY TALES", '/n', "10)DRAMA", '/n')
                 g = input()
-                mycursor.execute(
-                    "select * from booklist where genre=g")  # will be refers to the booklist table here not library table.lib is database
-                res = mycursor.fetchall()
+                mycursor.execute("select * from booklist where genre=g") 
                 no = 1
-                for i in res:
+                for i in mycursor:
                     print(no, i)
                     no += 1
 
@@ -207,10 +202,12 @@ def homapage():
                     gg = input("If u want to read a different genre, enter YES, else enter NO again: ")
                     if gg == "NO":
                         c += 1
-                        print(
-                            "We see that you are not interested in these books, please select from other options: ")  
+                        print( "We see that you are not interested in these books, please select from other options: ")  
+                            
                     else:
                         c1 += 1
+                    return 0        
+                            
 
                 else:
                     if Nom == 2:
@@ -237,22 +234,29 @@ def homapage():
             print("Your book(s) have been successfully published.")
         if Nom == 2 and dead_end==0:
             book = BuyOrRent()
-            cart.append(book)
-            bill()
             # direct to checkout fn/end fn
+            
         if Nom == 3 and dead_end==0:
             book = BuyOrRent()
-            cart.append(book)
-            bill()
-            
             # direct to checkout fn/end fn
+
+        if dead_end != 0:
+            BuyOrRent()   
+                 
         if Nom == 4:
             print('Thank you for visitng UNREAL LIBRARY.')
-        if dead_end != 0:
-            BuyOrRent()
+        else  :
+                cart.append(book)
+                repeat=input("Enter A to purchase another book or P to publish a book")
+                if repeat=='A' or repeat=='a':
+                        BuyOrRent()
+                elif repeat=='P' or repeat=='p':
+                        publish()    
+                bill()
+                
+                
+        
 
-            '''check for any further errors/
-            +working check karihabani karana tables create hin heini
 
 
 
