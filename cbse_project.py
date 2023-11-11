@@ -1,24 +1,15 @@
 import mysql.connector
 mydb = mysql.connector.connect(host="localhost",user="root",passwd="cbseproject",database='library')
 mycursor = mydb.cursor()
-'''mycursor.execute("create database library")
-mycursor.execute("show databases")
-for db in mycursor:
-    print(db)
-'''
-'''mycursor.execute("create table booklist (name varchar(220) , genre varchar(250))")'''
-'''for i in range(0,2):
-    n=input("enter name:")
-    gen = input("enter genre: ")
-    ins = "insert into booklist values( '{}' , '{}')".format(n,gen)
-    mycursor.execute(ins)
-    mycursor.execute("select * from booklist")
-    for x in mycursor:
-        print(x)
-'''
-'''ignore comment lines
-create ur own database and cursor obj
-'''
+try:
+    mycursor.execute("create database library")
+except mysql.connector.errors.DatabaseError:  
+    pass
+
+try:
+    mycursor.execute("create table booklist (name varchar(220) , genre varchar(250))")
+except mysql.connector.errors.ProgrammingError:
+   pass
     
 mycursor.execute("create table booklist6 (sn Integer(10), na varchar(220), author varchar(220), gen varchar(220), al varchar(220))")
 
