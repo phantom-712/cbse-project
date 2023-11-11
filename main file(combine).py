@@ -121,7 +121,7 @@ def homapage():
         Nom = int(input())
         dead_end = 0
 
-def publish():
+    def publish():
             n = int(input("Num of books you want to publish: "))
             slot_no = 75
             for i in range(n):
@@ -138,7 +138,7 @@ def publish():
 
             c, c1 = 0, 0
 
-def BuyOrRent():
+    def BuyOrRent():
             dead_end = 0
             print("Enter:", '\n','1. To see Latest in Collection, 2. To see Popular this month, 3 To Search a book by Genre: ')
             M = int(input())
@@ -230,25 +230,25 @@ def BuyOrRent():
         # c au c1 ra purpose plz explain.
 
 
-booklist()    
+    booklist()    
 
-if Nom == 1:
+    if Nom == 1:
         publish()
         print("Your book(s) have been successfully published.")
-if Nom == 2 and dead_end==0:
+    if Nom == 2 and dead_end==0:
         book = BuyOrRent()
         # direct to checkout fn/end fn
             
-if Nom == 3 and dead_end==0:
+    if Nom == 3 and dead_end==0:
         book = BuyOrRent()
         # direct to checkout fn/end fn
 
-if dead_end != 0:
+    if dead_end != 0:
         BuyOrRent()   
                  
-if Nom == 4:
+    if Nom == 4:
         print('Thank you for visitng UNREAL LIBRARY.')
-else  :
+    else  :
         cart.append(book)
         repeat=input("Enter A to purchase another book or P to publish a book")
         if repeat=='A' or repeat=='a':
