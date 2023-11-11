@@ -256,28 +256,3 @@ else  :
         elif repeat=='P' or repeat=='p':
                 publish()    
                 bill()
-                
-                
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
-            last ku sabu compile karila pare check haba'''
