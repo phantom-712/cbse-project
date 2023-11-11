@@ -148,5 +148,6 @@ def bill():
     for i in range(n):
         print(i+1,l[i],"₹1000",sep="\t")
     print("Total amount  = ₹",amt)
+    print("Mode of payment will be Cash On Delivery.")
         
 
