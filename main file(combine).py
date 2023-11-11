@@ -229,7 +229,7 @@ def homapage():
         # c au c1 ra purpose plz explain.
 
 
-    booklist()    
+    booklist_()    
 
     if Nom == 1:
         publish()
@@ -255,3 +255,8 @@ def homapage():
         elif repeat=='P' or repeat=='p':
                 publish()    
                 bill()
+                
+
+
+
+homepage()
