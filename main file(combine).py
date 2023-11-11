@@ -1,10 +1,7 @@
 '''
 Its the base of the home page part which mycursoreates the basic tables. and braches out to others.
 '''
-
-
-def homapage():
-    import mysql.connector
+import mysql.connector
     mydb = mysql.connector.connect(host='localhost', password='admin', user='root')  # enter your password
     if mydb.is_connected():
         print('connection with python is established...')
@@ -28,6 +25,7 @@ def homapage():
 
     mycursor.execute('table booklist')
 
+def homapage():
     # inserting values to booklist
     def booklist_():
 
@@ -252,4 +250,24 @@ def homapage():
 
             '''check for any further errors/
             +working check karihabani karana tables create hin heini
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
             last ku sabu compile karila pare check haba'''
