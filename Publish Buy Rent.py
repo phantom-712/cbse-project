@@ -14,8 +14,8 @@ def home_page():
             agelimit = input('Enter age limit: ')
             print('\n')
             ins = "insert into booklist value({},'{}','{}','{}','{}')".format(slot_no, name, author, genre, agelimit)
-            cr.execute(ins)
-            con.commit()
+            mycursor.execute(ins)
+            mydb.commit()
 
     c, c1 = 0, 0
 
@@ -38,9 +38,9 @@ def home_page():
                 break
 
             else:
-                cr.execute(
+                mycursor.execute(
                     "select * from booklist where name=Bk")  # tu table he kichi beneinu ta ae command kahinki use karichu? suggestion: put the 4 books in a list and search for the required book  in that list and display it.
-                res = cr.fetchall()
+                res = mycursor.fetchall()
                 for i in res:
                     print(i)
                 if Nom == 2:
@@ -65,8 +65,8 @@ def home_page():
                     "We see that you are not interested in these books, please select from other options: ")  # dead end direct to buy or rent menu
                 break
             else:
-                cr.execute("select * from booklist where name=Bk")  # same mistake as in 29
-                res = cr.fetchall()
+                mycursor.execute("select * from booklist where name=Bk")  # same mistake as in 29
+                res = mycursor.fetchall()
                 for i in res:
                     print(i)
                 if Nom == 2:
@@ -82,9 +82,9 @@ def home_page():
                   '/n', "4)NON FICTION", '/n', "5)ROMANCE", '/n', "6)HORROR", '/n', '7)AUTOBIOGRAHY', '/n',
                   '8)GRAPHIC NOVEL', '/n', "9)FAIRY TALES", '/n', "10)DRAMA", '/n')
             g = input()
-            cr.execute(
+            mycursor.execute(
                 "select * from booklist where genre=g")  # will be refers to the booklist table here not library table.lib is database
-            res = cr.fetchall()
+            res = mycursor.fetchall()
             no = 1
             for i in res:
                 print(no, i)
