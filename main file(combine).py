@@ -11,7 +11,7 @@ if mydb.is_connected():
     #mycursoreating and using database
     
     try:
-        cmd='mycursoreate database Library'
+        cmd='create database Library'
         mycursor.execute(cmd)
         
     except mysql.connector.errors.DatabaseError:
