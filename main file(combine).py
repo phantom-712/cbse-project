@@ -131,12 +131,11 @@ def homapage():
                 genre = input('Enter genre of book: ')
                 agelimit = input('Enter age limit: ')
                 print('\n')
-                ins = "insert into booklist value({},'{}','{}','{}','{}')".format(slot_no, name, author, genre,
-                                                                                  agelimit)
+                ins = "insert into booklist value({},'{}','{}','{}','{}')".format(slot_no, name, author, genre,agelimit)
                 mycursor.execute(ins)
                 mydb.commit()
 
-            c, c1 = 0, 0
+    c, c1 = 0, 0
 
     def BuyOrRent():
             dead_end = 0
