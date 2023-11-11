@@ -66,7 +66,7 @@ def end_menu():#calculation  of total amount billing address discount add here.
              mycursor.execute("select code from oc")
              choice=1
              for existingcode in mycursor:
-                 if existingcode == cc:
+                 if existingcode == (cc,):
                      choice=-1
                   break
                  
