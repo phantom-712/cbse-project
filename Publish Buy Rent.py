@@ -142,12 +142,32 @@ def home_page():
         +working check karihabani karana tables create hin heini
         last ku sabu compile karila pare check haba'''
 def bill():
-    n= len(l)
-    amt = n*1000
-    print("Sl No.","Book","Price",sep="\t")
-    for i in range(n):
-        print(i+1,l[i],"₹1000",sep="\t")
-    print("Total amount  = ₹",amt)
-    print("Mode of payment will be Cash On Delivery.")
+    if Nom==2: 
+        n= len(l)
+        amt = n*1000
+        print("Sl No.","Book","Price",sep="\t")
+        for i in range(n):
+            print(i+1,l[i],"₹1000",sep="\t")
+        discode=input("Enter code for discount if you have any code else enter c: ")
+        if discode=="UNREAL" or discode == 'unreal':
+            amt-=500    
+        print("Total amount  = ₹",amt)
+        print("Mode of payment will be Cash On Delivery.\nThank you for buying from us")
+    elif Nom==3:
+        r=100
+        time=int(input("Enter for how many weeks you want to rent the book: "))
+        #code unreal-500 discount
+        amt=r*time
+        discode=input("Enter code for discount if you have any code else enter c: ")
+        if discode=="UNREAL" or discode == 'unreal':
+            amt-=500
+        print("Total amount  = ₹",amt)
+        print("Mode of payment will be Cash On Delivery.\nThank you for renting a book from us")   
+
+
+
+
+
+        
         
 
