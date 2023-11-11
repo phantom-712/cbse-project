@@ -141,3 +141,12 @@ def home_page():
         '''check for any further errors/
         +working check karihabani karana tables create hin heini
         last ku sabu compile karila pare check haba'''
+def bill():
+    n= len(l)
+    amt = n*1000
+    print("Sl No.","Book","Price",sep="\t")
+    for i in range(n):
+        print(i+1,l[i],"₹1000",sep="\t")
+    print("Total amount  = ₹",amt)
+        
+
