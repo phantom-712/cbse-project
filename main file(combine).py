@@ -16,7 +16,7 @@ except mysql.connector.errors.DatabaseError:
 mycursor.execute('USE library')
 
 try:
-        cmd = "mycursorEATE TABLE booklist(Slot_No integer(5), Bookname varchar(255),Author varchar(255), Genre varchar(255), Age_Limit varchar(255))"
+        cmd = "CREATE TABLE booklist(Slot_No integer(5), Bookname varchar(255),Author varchar(255), Genre varchar(255), Age_Limit varchar(255))"
         mycursor.execute(cmd)
 except mysql.connector.errors.DatabaseError:
         pass
