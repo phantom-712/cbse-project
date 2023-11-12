@@ -114,7 +114,7 @@ def homepage():
             author = l[i][2]
             genre = l[i][3]
             agelimit = l[i][4]
-            ins = "insert into booklist6 value({},'{}','{}','{}','{}')".format(sn, name, author, genre, agelimit)
+            ins = "insert into booklist values({},'{}','{}','{}','{}')".format(sn, name, author, genre, agelimit)
             mycursor.execute(ins)
             mydb.commit()
 
@@ -374,6 +374,7 @@ if wrong_choice!=0:
     start_menu()
 homepage()    
 end_menu()
+
 '''
 ERRORS TO FIX-
 latest/popular/genre - ei sabu bhitaru jadi kichi icha helani user ku full book list ta dekheidaba
