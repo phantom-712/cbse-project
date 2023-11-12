@@ -154,7 +154,7 @@ def homepage():
                     return 0
 
                 else:
-                    mycursor.execute("select * from booklist where name=Bk")
+                    mycursor.execute("select * from booklist where name=%s",(Bk,))
                     for i in mycursor:
                         print(i)
                     if Nom == 2:
@@ -177,7 +177,7 @@ def homepage():
                     print("We see that you are not interested in these books, please select from other options: ") 
                     return 0
                 else:
-                    mycursor.execute(("select * from booklist where name=%s")(Bk))
+                    mycursor.execute("select * from booklist where name=%s",(Bk,))
                     for i in mycursor:
                         print(i)
                     if Nom == 2:
@@ -191,7 +191,7 @@ def homepage():
                 Bk = ''
                 print("Enter the genre you want to read:", "\n", "1)FICTION", '/n', "2)SCIENCE FICTION", '/n', "3)MYSTERY",'/n', "4)NON FICTION", '/n', "5)ROMANCE", '/n', "6)HORROR", '/n', '7)AUTOBIOGRAHY', '/n','8)GRAPHIC NOVEL', '/n', "9)FAIRY TALES", '/n', "10)DRAMA", '/n')
                 g = input()
-                mycursor.execute("select * from booklist where genre=g") 
+                mycursor.execute("select * from booklist where genre=%s",(g,)) 
                 no = 1
                 for i in mycursor:
                     print(no, i)
