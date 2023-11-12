@@ -248,8 +248,7 @@ def homepage():
                  
     if Nom == 4:
         print('Thank you for visitng UNREAL LIBRARY.')
-    else  :
-        cart.append(book)
+    else  :        
         repeat=input("Enter A to purchase another book or P to publish a book")
         if repeat=='A' or repeat=='a':
                 BuyOrRent()
