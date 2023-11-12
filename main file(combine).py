@@ -374,3 +374,11 @@ if wrong_choice!=0:
     start_menu()
 homepage()    
 end_menu()
+'''
+ERRORS TO FIX-
+latest/popular/genre - ei sabu bhitaru jadi kichi icha helani user ku full book list ta dekheidaba
+exit option after buying a book
+print all details of the book
+error in line 356 nc,cc jinsa
+etc.
+'''
