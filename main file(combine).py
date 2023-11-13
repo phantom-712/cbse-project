@@ -178,9 +178,10 @@ def homepage():
                     print("We see that you are not interested in these books, please select from other options: ") 
                     return 0
                 else:
-                    mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
+                    mycursor.execute("select * from booklist where Bookname=%s",(Bk.upper(),))
                     for i in mycursor:
                         print(i)
+                        break
                     if Nom == 2:
                         print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                     if Nom == 3:
@@ -199,7 +200,7 @@ def homepage():
                     no += 1
 
                 Bk = input("Enter the name of the book you want to buy, if not press NO: ")
-                if Bk == 'NO':
+                if Bk == 'NO' or Bk=='no':
                     gg = input("If u want to read a different genre, enter YES, else enter NO again: ")
                     if gg == "NO":
                         c += 1
@@ -215,7 +216,7 @@ def homepage():
                         print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                     if Nom == 3:
                         print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
-                    return (Bk)
+                    return (Bk.upper())
         
 
             if c != 0:
