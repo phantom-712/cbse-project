@@ -117,7 +117,7 @@ def homepage():
             mycursor.execute(ins)
             mydb.commit()
 
-    print("Enter:", '\n'," 1. if you want to publish your book(s)\n\n2. if you want to Buy a book,\n\n3. if you want to rent a book\n\n4. Exit\n")
+    print("Enter:", '\n',"1. if you want to publish your book(s)\n\n2. if you want to Buy a book,\n\n3. if you want to rent a book\n\n4. Exit\n")
     Nom = int(input())
     dead_end = 0
 
@@ -139,7 +139,7 @@ def homepage():
 
     def BuyOrRent():
             dead_end = 0
-            print("Enter:", '\n','1. To see Latest in Collection, 2. To see Popular this month, 3 To Search a book by Genre: ')
+            print("Enter:", '\n','1. To see Latest in Collection \n2. To see Popular this month  \n3 To Search a book by Genre: ')
             M = int(input())
 
             def Latest():
@@ -214,6 +214,7 @@ def homepage():
                     if Nom == 3:
                         print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
                     return (Bk)
+        
 
             if c != 0:
                 dead_end += 1
