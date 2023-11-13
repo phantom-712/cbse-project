@@ -372,10 +372,6 @@ def time_delay():
 def start_menu():
     wrong_choice=0 
     print("\t\t\t\t\tUNREAL LIBRARY")
-    x=[]
-    mycursor.execute("select code from oc")
-    for y in mycursor:
-        x.append(y)
     print("WELCOME!")
     time_delay()
     print("Unreal Library is your go-to virtual library for buying,renting and selling books")
@@ -384,7 +380,7 @@ def start_menu():
     time_delay()    
     ch=input("if existing user,enter the user-code or press N(in caps) for new user: ")
     mycursor.execute("select code from oc")
-    while ch!="N" or (ch,) not in x:
+    while ch!="N" or (ch,) not in mycursor:
             print("enter again please")
             ch=input()
     if ch=="N":
