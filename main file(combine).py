@@ -327,7 +327,7 @@ def start_menu():
     print("But before that we would like to know if you are an existing user or new user.")
     time_delay()    
     ch=input("if existing user,enter the user-code or press N for new user: ")
-    if ch=="N":
+    if ch=="N" or ch=="n":
         newcust=1    
         custname=input("Welcome aboard!\nPlease enter your name: ")  
     elif (ch,) in x:#means an existing user
