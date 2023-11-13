@@ -154,9 +154,10 @@ def homepage():
                     return 0
 
                 else:
-                    mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
+                    mycursor.execute("select * from booklist where Bookname=%s",(Bk.upper(),))
                     for i in mycursor:
                         print(i)
+                        break
                     if Nom == 2:
                         print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                     if Nom == 3:
