@@ -3,7 +3,7 @@ Its the base of the home page part which mycursoreates the basic tables. and bra
 '''
 import mysql.connector
 passw=input("Enter you mysql password: ")
-mydb = mysql.connector.connect(host='localhost', password=passw, user='root') 
+mydb = mysql.connector.connect(host='localhost', password="PASSW", user='root') 
 
 mycursor = mydb.cursor()
 
@@ -157,9 +157,9 @@ def homepage():
                     for i in mycursor:
                         print(i)
                     if Nom == 2:
-                        print("To buy the book-", Bk, '/t', "You have to pay ₹1000")
+                        print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                     if Nom == 3:
-                        print("To rent the book-", Bk, '/t', "You have to pay ₹100 per week")
+                        print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
                     return (Bk)
 
             def Popular():
@@ -180,15 +180,15 @@ def homepage():
                     for i in mycursor:
                         print(i)
                     if Nom == 2:
-                        print("To buy the book-", Bk, '/t', "You have to pay ₹1000")
+                        print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                     if Nom == 3:
-                        print("To rent the book-", Bk, '/t', "You have to pay ₹100 per week")
+                        print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
                     return (Bk)
 
             def Genre():
                 c, c1 = 0, 0
                 Bk = ''
-                print("Enter the genre you want to read:", "\n", "1)FICTION", '/n', "2)SCIENCE FICTION", '/n', "3)MYSTERY",'/n', "4)NON FICTION", '/n', "5)ROMANCE", '/n', "6)HORROR", '/n', '7)AUTOBIOGRAHY', '/n','8)GRAPHIC NOVEL', '/n', "9)FAIRY TALES", '/n', "10)DRAMA", '/n')
+                print("Enter the genre you want to read:", "\n", "1)FICTION", '\n', "2)SCIENCE FICTION", '\n', "3)MYSTERY",'\n', "4)NON FICTION", '\n', "5)ROMANCE", '\n', "6)HORROR", '\n', '7)AUTOBIOGRAHY', '\n','8)GRAPHIC NOVEL', '\n', "9)FAIRY TALES", '\n', "10)DRAMA", '\n')
                 g = input()
                 mycursor.execute("select * from booklist where genre=%s",(g,)) 
                 no = 1
@@ -210,9 +210,9 @@ def homepage():
 
                 else:
                     if Nom == 2:
-                        print("To buy the book-", Bk, '/t', "You have to pay ₹1000")
+                        print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                     if Nom == 3:
-                        print("To rent the book-", Bk, '/t', "You have to pay ₹100 per week")
+                        print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
                     return (Bk)
 
             if c != 0:
