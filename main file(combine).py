@@ -117,7 +117,7 @@ def homepage():
             mycursor.execute(ins)
             mydb.commit()
 
-    print("Enter:", '\n',"1. if you want to publish your book(s)\n\n2. if you want to Buy a book,\n\n3. if you want to rent a book\n\n4. Exit\n")
+    print("Enter:", '\n',"1. if you want to publish your book(s)\n\n 2. if you want to Buy a book,\n\n 3. if you want to rent a book\n\n 4. Exit\n")
     Nom = int(input())
     dead_end = 0
 
@@ -146,7 +146,7 @@ def homepage():
                 c = 0
                 print("4 books have been added recently:", '\n', "1. JOURNEY TO THE CENTRE OF THE EARTH", '\n',"2. THE HARRY POTTER SERIES", '\n', "3. THE PILLARS OF THE EARTH (SERIES)", '\n','4. GHOST WORLD')
                 Bk = ''
-                Bk = input("Enter the name of the book, if interested to get further details, else press NO: ")
+                Bk = input("Enter the alotted no. of the book you wanted to purchase, if interested to get further details, else press NO: ")
                 if Bk == "NO" or Bk == 'no':
                     c += 1
                     print("We see that you are not interested in these books, please select from other options: ")
