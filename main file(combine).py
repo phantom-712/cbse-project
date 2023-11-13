@@ -29,7 +29,7 @@ except mysql.connector.errors.ProgrammingError:
 cart=[] #to store the shopping cart of the user
 
 
-def booklist_():
+def booklist():
 
         b1 = [1, "ULYSSES", "JAMES JOYCE", "FICTION", "PG-13"]
         b2 = [2, "WAR AND PEACE", "LEO TOLSTOY", "FICTION", "PG-13"]
@@ -113,24 +113,19 @@ def booklist_():
             Author = l[i][2]
             Genre = l[i][3]
             Age_Limit = l[i][4]
-            ins = "insert into booklist value({},'{}','{}','{}','{}')".format(Slot_No, Bookname, Author, Genre, Age_Limit)
+            ins = "insert into booklist values({},'{}','{}','{}','{}')".format(Slot_No, Bookname, Author, Genre, Age_Limit)
             mycursor.execute(ins)
             mydb.commit()  
 
 
 
-
-
-
-
 def homepage():
-    # inserting values to booklist    
-      
+    # inserting values to booklist   
     print("Enter:", '\n',"1. if you want to publish your book(s)\n\n 2. if you want to Buy a book,\n\n 3. if you want to rent a book\n\n 4. Exit\n")
     Nom = 6
     while Nom not in range(1,5):
             Nom = int(input())
-            if Nom in range(1,4):
+            if Nom in range(1,5):
                             break
             print("invalid input. Please enter a valid number from 1 to 4: ")            
     dead_end = 0
@@ -145,7 +140,7 @@ def homepage():
                 genre = input('Enter genre of book: ')
                 agelimit = input('Enter age limit: ')
                 print('\n')
-                ins = "insert into booklist value({},'{}','{}','{}','{}')".format(slot_no, Bookname, author, genre,agelimit)
+                ins = "insert into booklist values({},'{}','{}','{}','{}')".format(slot_no, Bookname, author, genre,agelimit)
                 mycursor.execute(ins)
                 mydb.commit()
 
@@ -153,7 +148,7 @@ def homepage():
 
     def BuyOrRent():
             dead_end = 0
-            print('Enter:\n1. To see Latest in Collection \n2. To see Popular this month  \n3 To Search a book by Genre: ')
+            print('Enter:\n1. To see Latest in Collection \n2. To see Popular this month  \n3 To Search a book by Genre\n4.View all Books:  ')
             M=6            
             while M not in range(1,5):
                     M = int(input())
@@ -167,8 +162,7 @@ def homepage():
                 print("4 books have been added recently:", '\n', "1. JOURNEY TO THE CENTRE OF THE EARTH", '\n',"2. THE HARRY POTTER SERIES", '\n', "3. THE PILLARS OF THE EARTH", '\n','4. GHOST WORLD')
                 Bk = ''
                 while True:
-                        Bk = (input("Enter the name of the book, if interested to get further details, else press NO: ")).upper()
-                
+                        Bk = (input("Enter the name of the book to get further details, else press NO: ")).upper()               
                         if Bk == "NO" or Bk == 'no':
                                     c += 1
                                     print("We see that you are not interested in these books, please select from other options: ")
@@ -176,11 +170,17 @@ def homepage():
                         if Bk not in("JOURNEY TO THE CENTRE OF THE EARTH","THE HARRY POTTER SERIES","THE PILLARS OF THE EARTH","GHOST WORLD"):                        
                                 print("Please try again") 
                                 continue
-                        else:                                
-                                mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
-                                for i in mycursor:
+                        else:
+                                try:
+                                    mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
+                                    for i in mycursor:
                                         print(i)
                                         break
+                                    
+                                except mysql.connector.errors.InternalError:
+                                    pass
+                                
+                                
                                 if Nom == 2:
                                         print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                                 if Nom == 3:
@@ -206,10 +206,14 @@ def homepage():
                                 print("Please try again")
                                 continue
                         else:
-                                mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
-                                for i in mycursor:
-                                        print(i)    
+                                try:
+                                    mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
+                                    for i in mycursor:
+                                        print(i)
                                         break
+                                    
+                                except mysql.connector.errors.InternalError:
+                                    pass
                                 if Nom == 2:
                                         print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                                 if Nom == 3:
@@ -220,11 +224,13 @@ def homepage():
                 Bk = ''
                 print("Enter the genre you want to read:", "\n", "1)FICTION", '\n', "2)SCIENCE FICTION", '\n', "3)MYSTERY",'\n', "4)NON FICTION", '\n', "5)ROMANCE", '\n', "6)HORROR", '\n', '7)AUTOBIOGRAHY', '\n','8)GRAPHIC NOVEL', '\n', "9)FAIRY TALES", '\n', "10)DRAMA", '\n')
                 g = input()
-                mycursor.execute("select * from booklist where genre=%s",(g,)) 
-                no = 1
-                for i in mycursor:
-                    print(no, i)
-                    no += 1
+                try:
+                    mycursor.execute("select * from booklist where genre=%s",(g,))
+                except mysql.connector.errors.InternalError:   
+                     no = 1
+                     for i in mycursor:
+                        print(no, i)
+                        no += 1
                 while True:
                         
                         Bk = (input("Enter the name of the book you want to buy, if not press NO: ")).upper()
@@ -251,9 +257,14 @@ def homepage():
             def ViewAll():
                  c=0
                  print("Here are all the books available in the library")
-                 mycursor.execute("Select * from Booklist")
-                 for i in mycursor:
-                     print(i)
+                 try:
+                                    mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
+                                    for i in mycursor:
+                                        print(i)
+                                        break
+                                    
+                 except mysql.connector.errors.InternalError:
+                                    pass
                  while True:
                     Bk = (input("Enter the name of the book, if interested to get further details, else press NO: ")).upper()
                     if Bk == "NO" or Bk == 'no':                        
@@ -310,7 +321,7 @@ def homepage():
         BuyOrRent()   
                  
     if Nom == 4:
-        print('Thank you for visitng UNREAL LIBRARY.')
+        sys.exit('Thank you for visitng UNREAL LIBRARY.')
     else  :        
         repeat=input("Enter A to purchase another book or P to publish a book or E to exit or C to continue with billing:  ")
         if repeat=='A' or repeat=='a':
@@ -386,7 +397,7 @@ def start_menu():
     time_delay()
     print("But before that we would like to know if you are an existing user or new user.")
     time_delay()    
-    ch=input("if existing user,enter the user-code or press N(in caps) for new user: ")
+    ch=input("if existing user,enter the user-code or press N for new user: ")
     mycursor.execute("select code from oc")
     while True:
             if ch=="N"or ch =="n":
@@ -396,47 +407,52 @@ def start_menu():
             else:
                     print("enter again")
                     ch=input()
-    if ch=="N":
+    if ch=="N" or ch=='n':
             newcust=1
             custname=input("Welcome aboard!\nPlease enter your name: ")
-    mycursor.execute("select code from oc")
-    elif (ch,) in mycursor:#means an existing user
+    else:
                     time_delay()
                     print("Glad to have an existing customer back.You will be receiving a special discount at the end. Just enter the code - 'UNREAL' ") 
        
 def end_menu():#calculation  of total amount billing address discount add here.
         print("We would like to give you a special reward")
         time_delay()
-        while True:
-             cc=input("Please enter a user code greater than 2000 (4digit): ")
-             mycursor.execute("select code from oc")
-             choice=1
-             for existingcode in mycursor:                
-                 if existingcode == (cc,):
+        cc=input("Please enter a user code greater than 2000 (4digit): ")
+        try:
+            mycursor.execute("select code from oc")
+                          
+        except mysql.connector.errors.InternalError:
+             while True:
+                choice=1
+                for existingcode in mycursor:
+                    if existingcode == (cc,):
                      choice=-1
-                 break
+                    break
                  
-             if choice==-1:
-                 print('This user code already exist .Please Try again!')
-             else:
-                 break
-        
-        print("You will be using this code to avail a discount in your next visit")
-        ins="insert into oc values('{}','{}')".format(nc,cc)
-        mycursor.execute(ins)
-        mydb.commit()
-        cf = input("to enter feedback press f and any other key to exit")
-        if cf=="f" or cf=="F":            
-            feed=input("Please enter feedback: ")
-            time_delay()
-            print("Thank you for the feedback and for visiting Unreal Library. We hope you had a great experience")
-        else:  
-            print("Thank you for visiting Unreal Library. We hope you had a great experience")
+                if choice==-1:
+                    print('This user code already exist .Please Try again!')
+                else:
+                    break
+             print("You will be using this code to avail a discount in your next visit")
+             try:
+                    ins="insert into oc values('{}','{}')".format(custname,cc)
+                    mycursor.execute(ins)
+                    mydb.commit()
+                    
+             except mysql.connector.errors.InternalError:
+                     cf = input("to enter feedback press f and any other key to exit")
+                     if cf=="f" or cf=="F":            
+                       feed=input("Please enter feedback: ")
+                       time_delay()
+                       print("Thank you for the feedback and for visiting Unreal Library. We hope you had a great experience")
+                     else:  
+                       print("Thank you for visiting Unreal Library. We hope you had a great experience")
+                     
 
 newcust=0
 bor=0#bor=2 for buying and 3 for renting
 custname=''
-booklist_()
+booklist()
 default()
 start_menu()
 homepage()    
