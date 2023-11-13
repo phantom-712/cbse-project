@@ -384,14 +384,12 @@ def start_menu():
     ch=input("if existing user,enter the user-code or press N(in caps) for new user: ")
     mycursor.execute("select code from oc")
     while True:
-            if ch =="N":
+            if ch =="N" or (ch,) in mycursor:
                     break
             if ch !="N" or (ch,) not in mycursor:
                     print("Please enter N or the valid user code")
                     ch=input()
                     continue
-            else:
-                    break
     if ch=="N":
             newcust=1
             custname=input("Welcome aboard!\nPlease enter your name: ")
