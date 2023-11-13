@@ -116,7 +116,8 @@ def homepage():
             Age_Limit = l[i][4]
             ins = "insert into booklist value({},'{}','{}','{}','{}')".format(Slot_No, Bookname, Author, Genre, Age_Limit)
             mycursor.execute(ins)
-            mydb.commit()        
+            mydb.commit()    
+    booklist_()
     print("Enter:", '\n',"1. if you want to publish your book(s)\n\n 2. if you want to Buy a book,\n\n 3. if you want to rent a book\n\n 4. Exit\n")
     Nom = 6
     while Nom not in range(1,5):
@@ -263,7 +264,7 @@ def homepage():
                                 print("To rent the book-", Bk, '/t', "You have to pay ₹100 per week")
                                 return (Bk.upper())
 
-            booklist_()
+            
         
             if c != 0:
                 dead_end += 1
