@@ -7,10 +7,12 @@ passw=input("Enter you mysql password: ")
 mydb = mysql.connector.connect(host='localhost', password=passw, user='root') 
 
 mycursor = mydb.cursor()
+cr=mydb.cursor()
 
 try:
         cmd = 'create database library'
         mycursor.execute(cmd)
+        cr.execute(cmd)
 except mysql.connector.errors.DatabaseError:
         pass
 mycursor.execute('USE library')
@@ -21,7 +23,7 @@ try:
 except mysql.connector.errors.DatabaseError:
         pass
 try:
-        mycursor.execute("create table oc (name varchar(220) , code varchar(250))")
+        cr.execute("create table oc (name varchar(220) , code varchar(250))")
     
 except mysql.connector.errors.ProgrammingError:
         pass
@@ -49,10 +51,10 @@ def booklist():
         b16 = [16, "STAR WARS", "GEORGE LUCAS", "SCIENCE FRICTON", "PG-13"]
         b17 = [17, "BRAVE NEW WORLD", "ALDOUS HUXLEY", "SCIENCE FICTION", "PG-13"]
         b18 = [18, "1984", "GEORGE ORWELL", "SCIENCE FICTION", "R"]
-        b19 = [19, "I, ROBOT", "ISAAC ASIMOV", "SCIENCE FICTION", "PG-13"]
-        b20 = [20, "FOUNDATION", "SAAC ASIMOV", "SCIENCE FICTION", "PG-13"]
-        b21 = [21, "THE MARTIN CHRONICLES", "RAY BRADBURY", "SCIENCE FICTION", "PG-13"]
-        b22 = [22, "FAHRENHEIT 451", "RAY BRADBURY", "SCIENCE FICTION", "PG-13"]
+        b19 = [19, "I, ROBOT", "ISAAC ASIMOV", "SCIENCE FICTION", "PG-13"]
+        b20 = [20, "FOUNDATION", "SAAC ASIMOV", "SCIENCE FICTION", "PG-13"]
+        b21 = [21, "THE MARTIN CHRONICLES", "RAY BRADBURY", "SCIENCE FICTION", "PG-13"]
+        b22 = [22, "FAHRENHEIT 451", "RAY BRADBURY", "SCIENCE FICTION", "PG-13"]
         b23 = [23, "PAY DIRT ROAD", "SAMANTHA JAYNE ALLEN", "MYSTERY", "No Age Rating"]
         b24 = [24, "THE VIOLIN CONSPIRACY", "BRENDAN SLOCUMB", "MYSTERY", "R"]
         b25 = [25, "THE BULLET THAT MISSED", "RICHARD OSMAN", "MYSTERY", "R"]
@@ -66,19 +68,19 @@ def booklist():
         b33 = [33, "IN THE WOODS", "TANA FRENCH", "MYSTERY", "PG-13"]
         b34 = [34, "A STUDY IN SCARLET WOMEN", "SHERRY THOMAS", "MYSTERY", "PG-13"]
         b35 = [35, "ONE OF THE MONKEY", "JANET EVANOVICH", "MYSTERY", "PG-UA"]
-        b36 = [36, "THE SIXTH EXTNCTION", "ELIZABETH KOLBERT", "NON FICTION", "UA"]
-        b37 = [37, "THE YEAR OF MAGICAL THINKING", "JOAN DIDION", "NON FICTION", "Not Given"]
-        b38 = [38, "BIRTHDAY LETTERS", "TED HUGHES", "NON FICTION", "R"]
-        b39 = [39, "A BRIEF HISTORY OF TIME", "STEPHEN HAWKING", "NON FICTION", "All Ages"]
-        b40 = [40, "THE RIGHT STUFF", "TOM WOLFE", "NON FICTION", "UA"]
-        b41 = [41, "HIROSHIMA", "JOHN HERSEY", "NON FICTION", "UA"]
-        b42 = [42, "BLACK BOY: A RECORD OF CHILDHOOD AND YOUTH", "RICHARD WRIGHT", "NON FICTION", "PG-15"]
-        b43 = [43, "THE WASTE LAND", "TS ELIOT", "NON FICTION", "PG-13"]
-        b44 = [44, "NO LOGO", "NAOMI KLEIN", "NON FICTION", "PG-15"]
-        b45 = [45, "DREAM FROM MY FATHER", "BARACK OBAMA", "NON FICTION", "PG-13"]
-        b46 = [46, "THE RIGHT STUFF", "TOM WOLFE", "NON FICTION", "UA"]
-        b47 = [47, "INTO THE WILD", "LON KRAKAUER", "NON FICTION", "PG-13"]
-        b48 = [48, "FREAKONOMICS", "STEVEN D. LEVITT AND STEPHEN J. DUBNER", "NON FICTION", "PG-13"]
+        b36 = [36, "THE SIXTH EXTNCTION", "ELIZABETH KOLBERT", "NON FICTION", "UA"]
+        b37 = [37, "THE YEAR OF MAGICAL THINKING", "JOAN DIDION", "NON FICTION", "Not Given"]
+        b38 = [38, "BIRTHDAY LETTERS", "TED HUGHES", "NON FICTION", "R"]
+        b39 = [39, "A BRIEF HISTORY OF TIME", "STEPHEN HAWKING", "NON FICTION", "All Ages"]
+        b40 = [40, "THE RIGHT STUFF", "TOM WOLFE", "NON FICTION", "UA"]
+        b41 = [41, "HIROSHIMA", "JOHN HERSEY", "NON FICTION", "UA"]
+        b42 = [42, "BLACK BOY: A RECORD OF CHILDHOOD AND YOUTH", "RICHARD WRIGHT", "NON FICTION", "PG-15"]
+        b43 = [43, "THE WASTE LAND", "TS ELIOT", "NON FICTION", "PG-13"]
+        b44 = [44, "NO LOGO", "NAOMI KLEIN", "NON FICTION", "PG-15"]
+        b45 = [45, "DREAM FROM MY FATHER", "BARACK OBAMA", "NON FICTION", "PG-13"]
+        b46 = [46, "THE RIGHT STUFF", "TOM WOLFE", "NON FICTION", "UA"]
+        b47 = [47, "INTO THE WILD", "LON KRAKAUER", "NON FICTION", "PG-13"]
+        b48 = [48, "FREAKONOMICS", "STEVEN D. LEVITT AND STEPHEN J. DUBNER", "NON FICTION", "PG-13"]
         b49 = [49, "MISTRESS", "AMANDA QUICK", "ROMANCE", "PG-13"]
         b50 = [50, "RAVISHED", "AMANDA QUICK", "ROMANCE", "PG-13"]
         b51 = [51, "DANGEROUS", "AMANDA QUICK", "ROMANCE", "PG-13"]
@@ -91,17 +93,17 @@ def booklist():
         b58 = [58, "BECOMING", "MICHELLE OBAMA", "AUTOBIOGRAPHY", "PG-13"]
         b59 = [59, "LONG WALK TO FREEDOM", "NELSON MANDELA", "AUTOBIOGRAPHY", "PG-13"]
         b60 = [60, "CHRONICLES", "BOB DYLAN", "AUTOBIOGRAPHY", "PG-13"]
-        b61 = [61, "WATCHMEN", "ALAN MOORE , DAVE GIBBONMS , JOHN HIGGINS", "GRAPHIC NOVEL", "PG-13"]
-        b62 = [62, "BATMAN:THE KILLING JOKE", "ALAN MOORE" , "TIM SALE", "GRAPHIC NOVEL", "R"]
-        b63 = [63, "GHOST WORLD", "DANIEL CLOWES", "GRAPHIC NOVEL", "PG-13"]
-        b64 = [64, "THE AVENGERS", "STAN LEE", "GRAPHIC NOVEL", "UA"]
-        b65 = [65, "GOOD OMEN", "NEIL GAIMAN", "FAIRY TALE", "R"]
-        b66 = [66, "HARRIET HALL AND THE MIRACLE CURE", "SONIA GARRETT", "FAIRY TALE", "UA"]
-        b67 = [67, "LEAGUE OF LEGENDS", "RIOT GAMES", "FAIRY TALE", "PG-13"]
-        b68 = [68, "THE QUEEN OF NOTHING", "HOLLY BLACK", "FAIRY TALE", "PG-13"]
-        b69 = [69, "MAGIC KINGDOM", "ZENITH PUBLISHING", "FAIRY TALE", "UA"]
+        b61 = [61, "WATCHMEN", "ALAN MOORE , DAVE GIBBONMS , JOHN HIGGINS", "GRAPHIC NOVEL", "PG-13"]
+        b62 = [62, "BATMAN:THE KILLING JOKE", "ALAN MOORE" , "TIM SALE", "GRAPHIC NOVEL", "R"]
+        b63 = [63, "GHOST WORLD", "DANIEL CLOWES", "GRAPHIC NOVEL", "PG-13"]
+        b64 = [64, "THE AVENGERS", "STAN LEE", "GRAPHIC NOVEL", "UA"]
+        b65 = [65, "GOOD OMEN", "NEIL GAIMAN", "FAIRY TALE", "R"]
+        b66 = [66, "HARRIET HALL AND THE MIRACLE CURE", "SONIA GARRETT", "FAIRY TALE", "UA"]
+        b67 = [67, "LEAGUE OF LEGENDS", "RIOT GAMES", "FAIRY TALE", "PG-13"]
+        b68 = [68, "THE QUEEN OF NOTHING", "HOLLY BLACK", "FAIRY TALE", "PG-13"]
+        b69 = [69, "MAGIC KINGDOM", "ZENITH PUBLISHING", "FAIRY TALE", "UA"]
         b70 = [70, "HAMLET", "WILLIAM SHAKESPEARE", "DRAMA", "UA"]
-        b71 = [71, "ROMEO AND JULIET", "WILLIAM SHAKESPEARE , DR. BARBARA A. MOWAT , PAUL WERSTINE", "DRAMA", "UA"]
+        b71 = [71, "ROMEO AND JULIET", "WILLIAM SHAKESPEARE , DR. BARBARA A. MOWAT , PAUL WERSTINE", "DRAMA", "UA"]
         b72 = [72, "THE FAULT IN OUR STARS", "JOHN GREEN", "DRAMA", "PG-13"]
         b73 = [73, "OTHELLO", "WILLIAM SHAKESPEARE", "DRAMA", "UA"]
         b74 = [74, "TWILIGHT", "STEPHENIE MEYER", "DRAMA", "PG-13"]
@@ -225,12 +227,12 @@ def homepage():
                 print("Enter the genre you want to read:", "\n", "1)FICTION", '\n', "2)SCIENCE FICTION", '\n', "3)MYSTERY",'\n', "4)NON FICTION", '\n', "5)ROMANCE", '\n', "6)HORROR", '\n', '7)AUTOBIOGRAHY', '\n','8)GRAPHIC NOVEL', '\n', "9)FAIRY TALES", '\n', "10)DRAMA", '\n')
                 g = input()
                 try:
-                    mycursor.execute("select * from booklist where genre=%s",(g,))
-                except mysql.connector.errors.InternalError:   
-                     no = 1
+                    mycursor.execute("select * from booklist where genre=%s",(g.upper(),))
+                    
+                except mysql.connector.errors.InternalError:
                      for i in mycursor:
-                        print(no, i)
-                        no += 1
+                        print(i)
+                     pass
                 while True:
                         
                         Bk = (input("Enter the name of the book you want to buy, if not press NO: ")).upper()
@@ -381,7 +383,7 @@ def default():
     #storing pre defined user values
     for i in range(0,5):
         ins="insert into oc values('{}','{}')".format(l[i][0], l[i][1])#oc is table under library
-        mycursor.execute(ins)
+        cr.execute(ins)
         mydb.commit()   
     
 def time_delay():
@@ -398,7 +400,7 @@ def start_menu():
     print("But before that we would like to know if you are an existing user or new user.")
     time_delay()    
     ch=input("if existing user,enter the user-code or press N for new user: ")
-    mycursor.execute("select code from oc")
+    cr.execute("select code from oc")
     while True:
             if ch=="N"or ch =="n":
                     break
@@ -417,36 +419,39 @@ def start_menu():
 def end_menu():#calculation  of total amount billing address discount add here.
         print("We would like to give you a special reward")
         time_delay()
-        cc=input("Please enter a user code greater than 2000 (4digit): ")
+        cc=input("Please enter a 4 digit user code: ")
         try:
-            mycursor.execute("select code from oc")
-                          
+                cr.execute("select code from oc")
+                                                     
         except mysql.connector.errors.InternalError:
-             while True:
-                choice=1
-                for existingcode in mycursor:
-                    if existingcode == (cc,):
-                     choice=-1
-                    break
+                while True:
+                        choice=1                        
+                        for existingcode in mycursor:
+                            if existingcode == (cc,):
+                                    choice=-1
+                                    break
                  
-                if choice==-1:
-                    print('This user code already exist .Please Try again!')
-                else:
-                    break
-             print("You will be using this code to avail a discount in your next visit")
-             try:
+                        if choice==-1:
+                            print('This user code already exist .Please Try again!')
+                            cc=input()
+                        else:
+                            break
+            
+                print("You will be using this code to avail a discount in your next visit")
+                try:
                     ins="insert into oc values('{}','{}')".format(custname,cc)
-                    mycursor.execute(ins)
+                    cr.execute(ins)
                     mydb.commit()
-                    
-             except mysql.connector.errors.InternalError:
-                     cf = input("to enter feedback press f and any other key to exit")
-                     if cf=="f" or cf=="F":            
+                    cf = input("to enter feedback press f and any other key to exit")
+                    if cf=="f" or cf=="F":            
                        feed=input("Please enter feedback: ")
                        time_delay()
                        print("Thank you for the feedback and for visiting Unreal Library. We hope you had a great experience")
-                     else:  
+                    else:  
                        print("Thank you for visiting Unreal Library. We hope you had a great experience")
+                    
+                except mysql.connector.errors.InternalError:
+                     pass
                      
 
 newcust=0
