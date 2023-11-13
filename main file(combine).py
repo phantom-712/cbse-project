@@ -380,9 +380,14 @@ def start_menu():
     time_delay()    
     ch=input("if existing user,enter the user-code or press N(in caps) for new user: ")
     mycursor.execute("select code from oc")
-    while ch!="N" or (ch,) not in mycursor:
-            print("enter again please")
-            ch=input()
+    while True:
+            if ch=="N"or ch =="n":
+                    break
+            elif (ch,) in mycursor:
+                    break
+            else:
+                    print("enter again")
+                    ch=input()
     if ch=="N":
             newcust=1
             custname=input("Welcome aboard!\nPlease enter your name: ")
