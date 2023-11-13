@@ -93,7 +93,7 @@ def homepage():
         b59 = [59, "LONG WALK TO FREEDOM", "NELSON MANDELA", "AUTOBIOGRAPHY", "PG-13"]
         b60 = [60, "CHRONICLES", "BOB DYLAN", "AUTOBIOGRAPHY", "PG-13"]
         b61 = [61, "WATCHMEN", "ALAN MOORE , DAVE GIBBONMS , JOHN HIGGINS", "GRAPHIC NOVEL", "PG-13"]
-        b62 = [62, "BATMAN:THE KILLING JOKE", "ALAN MOORE , BRIAN BOLLAND , TIM SALE", "GRAPHIC NOVEL", "R"]
+        b62 = [62, "BATMAN:THE KILLING JOKE", "ALAN MOORE" , "TIM SALE", "GRAPHIC NOVEL", "R"]
         b63 = [63, "GHOST WORLD", "DANIEL CLOWES", "GRAPHIC NOVEL", "PG-13"]
         b64 = [64, "THE AVENGERS", "STAN LEE", "GRAPHIC NOVEL", "UA"]
         b65 = [65, "GOOD OMEN", "NEIL GAIMAN", "FAIRY TALE", "R"]
@@ -117,7 +117,7 @@ def homepage():
             ins = "insert into booklist value({},'{}','{}','{}','{}')".format(Slot_No, Bookname, Author, Genre, Age_Limit)
             mycursor.execute(ins)
             mydb.commit()        
-    print("Enter:", '\n'," 1. if you want to publish your book(s)\n\n2. if you want to Buy a book,\n\n3. if you want to rent a book\n\n4. Exit\n")
+    print("Enter:", '\n',"1. if you want to publish your book(s)\n\n 2. if you want to Buy a book,\n\n 3. if you want to rent a book\n\n 4. Exit\n")
     Nom = 6
     while Nom not in range(1,5):
             Nom = int(input())
@@ -144,7 +144,7 @@ def homepage():
 
     def BuyOrRent():
             dead_end = 0
-            print("Enter:", '\n','1. To see Latest in Collection, 2. To see Popular this month, 3. To Search a book by Genre, 4. to view all the books')
+            print('Enter:\n1. To see Latest in Collection \n2. To see Popular this month  \n3 To Search a book by Genre: ')
             M=6            
             while M not in range(1,5):
                     M = int(input())
@@ -158,7 +158,7 @@ def homepage():
                 print("4 books have been added recently:", '\n', "1. JOURNEY TO THE CENTRE OF THE EARTH", '\n',"2. THE HARRY POTTER SERIES", '\n', "3. THE PILLARS OF THE EARTH", '\n','4. GHOST WORLD')
                 Bk = ''
                 while True:
-                        Bk = input("Enter the name of the book(in caps), if interested to get further details, else press NO: ")
+                        Bk = (input("Enter the name of the book, if interested to get further details, else press NO: ")).upper()
                 
                         if Bk == "NO" or Bk == 'no':
                                     c += 1
@@ -171,11 +171,12 @@ def homepage():
                                 mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
                                 for i in mycursor:
                                         print(i)
-                                        if Nom == 2:
-                                                print("To buy the book-", Bk, '/t', "You have to pay ₹1000")
-                                        if Nom == 3:
-                                                print("To rent the book-", Bk, '/t', "You have to pay ₹100 per week")
-                                        return (Bk.upper())                                                                
+                                        break
+                                if Nom == 2:
+                                        print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
+                                if Nom == 3:
+                                         print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
+                                return (Bk.upper())                                                                
 
             def Popular():
                 c = 0
@@ -187,7 +188,7 @@ def homepage():
                 Bk = ''
                 while True:
                         
-                        Bk = input("Enter the name of the book(in caps), if interested to get further details, else press NO: ")
+                        Bk = (input("Enter the name of the book(in caps), if interested to get further details, else press NO: ")).upper()
                         if Bk == "NO" or Bk == 'no':
                             c += 1
                             print("We see that you are not interested in these books, please select from other options: ") 
@@ -198,16 +199,17 @@ def homepage():
                         else:
                                 mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
                                 for i in mycursor:
-                                        print(i)                                
+                                        print(i)    
+                                        break
                                 if Nom == 2:
-                                        print("To buy the book-", Bk, '/t', "You have to pay ₹1000")
+                                        print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                                 if Nom == 3:
-                                        print("To rent the book-", Bk, '/t', "You have to pay ₹100 per week")
+                                        print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
                                 return (Bk.upper())
             def Genre():
                 c, c1 = 0, 0
                 Bk = ''
-                print("Enter(in caps) the genre you want to read:", "\n", "1)FICTION", '/n', "2)SCIENCE FICTION", '/n', "3)MYSTERY",'/n', "4)NON FICTION", '/n', "5)ROMANCE", '/n', "6)HORROR", '/n', '7)AUTOBIOGRAHY', '/n','8)GRAPHIC NOVEL', '/n', "9)FAIRY TALES", '/n', "10)DRAMA", '/n')
+                print("Enter the genre you want to read:", "\n", "1)FICTION", '\n', "2)SCIENCE FICTION", '\n', "3)MYSTERY",'\n', "4)NON FICTION", '\n', "5)ROMANCE", '\n', "6)HORROR", '\n', '7)AUTOBIOGRAHY', '\n','8)GRAPHIC NOVEL', '\n', "9)FAIRY TALES", '\n', "10)DRAMA", '\n')
                 g = input()
                 mycursor.execute("select * from booklist where genre=%s",(g,)) 
                 no = 1
@@ -216,7 +218,7 @@ def homepage():
                     no += 1
                 while True:
                         
-                        Bk = input("Enter the name of the book you want to buy, if not press NO: ")
+                        Bk = (input("Enter the name of the book you want to buy, if not press NO: ")).upper()
                 
                         if Bk == 'NO' or Bk=="no":
                             gg = input("If u want to read a different genre, enter YES, else enter NO again: ")
@@ -232,9 +234,9 @@ def homepage():
                                 continue                            
                         else:
                             if Nom == 2:
-                                print("To buy the book-", Bk, '/t', "You have to pay ₹1000")
+                                print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                             if Nom == 3:
-                                print("To rent the book-", Bk, '/t', "You have to pay ₹100 per week")
+                                print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
                             return (Bk.upper())
           
             def ViewAll():
@@ -244,7 +246,7 @@ def homepage():
                  for i in mycursor:
                      print(i)
                  while True:
-                    Bk = input("Enter the name of the book, if interested to get further details, else press NO: ")
+                    Bk = (input("Enter the name of the book, if interested to get further details, else press NO: ")).upper()
                     if Bk == "NO" or Bk == 'no':                        
                         c += 1
                         print("We see that you are not interested in these books, please select from other options: ")
@@ -287,10 +289,12 @@ def homepage():
         print("Your book(s) have been successfully published.")
     if Nom == 2 and dead_end==0:
         book = BuyOrRent()
+        cart.append(book)
         # direct to checkout fn/end fn
             
     if Nom == 3 and dead_end==0:
         book = BuyOrRent()
+        cart.append(book)
         # direct to checkout fn/end fn
 
     if dead_end != 0:
@@ -299,19 +303,17 @@ def homepage():
     if Nom == 4:
         print('Thank you for visitng UNREAL LIBRARY.')
     else  :        
-        repeat=input("Enter A to purchase another book or P to publish a book")
+        repeat=input("Enter A to purchase another book or P to publish a book or E to exit or C to continue with billing:  ")
         if repeat=='A' or repeat=='a':
                 BuyOrRent()
-        elif repeat=='P' or repeat=='p':
-                publish()    
-                bill()
+        elif  repeat=='E' or repeat=='e':
+                sys.exit("thank you for visiting us.")        
 
         
     def bill():
      if Nom==2: 
         n= len(cart)
         amt = n*1000
-        print("Sl No.","Book","Price",sep="\t")
         for i in range(n):
             print(i+1,cart[i],"₹1000",sep="\t")
                 
@@ -338,7 +340,13 @@ def homepage():
                 print("You got a newcomer discount of ₹200")
                 amt-=200
         print("Total amount  = ₹",amt)
-        print("Mode of payment will be Cash On Delivery.\nThank you for renting a book from us")               
+        print("Mode of payment will be Cash On Delivery.\nThank you for renting a book from us")      
+    
+    if repeat=='C' or repeat=='c':
+            bill()     
+    if repeat=='P' or repeat=='p':
+                publish()    
+                bill()        
 
 
 
