@@ -3,7 +3,7 @@ Its the base of the home page part which mycursoreates the basic tables. and bra
 '''
 import mysql.connector
 passw=input("Enter you mysql password: ")
-mydb = mysql.connector.connect(host='localhost', password="PASSW", user='root') 
+mydb = mysql.connector.connect(host='localhost', password=passw, user='root') 
 
 mycursor = mydb.cursor()
 
