@@ -28,9 +28,8 @@ except mysql.connector.errors.ProgrammingError:
 
 cart=[] #to store the shopping cart of the user
 
-def homepage():
-    # inserting values to booklist    
-    def booklist_():
+
+def booklist_():
 
         b1 = [1, "ULYSSES", "JAMES JOYCE", "FICTION", "PG-13"]
         b2 = [2, "WAR AND PEACE", "LEO TOLSTOY", "FICTION", "PG-13"]
@@ -116,8 +115,17 @@ def homepage():
             Age_Limit = l[i][4]
             ins = "insert into booklist value({},'{}','{}','{}','{}')".format(Slot_No, Bookname, Author, Genre, Age_Limit)
             mycursor.execute(ins)
-            mydb.commit()    
-    booklist_()
+            mydb.commit()  
+
+
+
+
+
+
+
+def homepage():
+    # inserting values to booklist    
+      
     print("Enter:", '\n',"1. if you want to publish your book(s)\n\n 2. if you want to Buy a book,\n\n 3. if you want to rent a book\n\n 4. Exit\n")
     Nom = 6
     while Nom not in range(1,5):
@@ -428,6 +436,7 @@ def end_menu():#calculation  of total amount billing address discount add here.
 newcust=0
 bor=0#bor=2 for buying and 3 for renting
 custname=''
+booklist_()
 default()
 start_menu()
 homepage()    
