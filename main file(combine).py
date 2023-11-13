@@ -2,6 +2,7 @@
 Its the base of the home page part which mycursoreates the basic tables. and braches out to others.
 '''
 import mysql.connector
+import sys
 passw=input("Enter you mysql password: ")
 mydb = mysql.connector.connect(host='localhost', password=passw, user='root') 
 
@@ -139,14 +140,14 @@ def homepage():
 
     def BuyOrRent():
             dead_end = 0
-            print("Enter:", '\n','1. To see Latest in Collection \n2. To see Popular this month  \n3 To Search a book by Genre: ')
+            print('Enter:\n1. To see Latest in Collection \n2. To see Popular this month  \n3 To Search a book by Genre: ')
             M = int(input())
 
             def Latest():
                 c = 0
                 print("4 books have been added recently:", '\n', "1. JOURNEY TO THE CENTRE OF THE EARTH", '\n',"2. THE HARRY POTTER SERIES", '\n', "3. THE PILLARS OF THE EARTH (SERIES)", '\n','4. GHOST WORLD')
                 Bk = ''
-                Bk = input("Enter the alotted no. of the book you wanted to purchase, if interested to get further details, else press NO: ")
+                Bk = input("Enter the bookname you want to purchase to get further details, else press NO: ")
                 if Bk == "NO" or Bk == 'no':
                     c += 1
                     print("We see that you are not interested in these books, please select from other options: ")
@@ -249,12 +250,14 @@ def homepage():
     if Nom == 4:
         print('Thank you for visitng UNREAL LIBRARY.')
     else  :        
-        repeat=input("Enter A to purchase another book or P to publish a book")
+        repeat=input("Enter A to purchase another book or P to publish a book or E to exit")
         if repeat=='A' or repeat=='a':
                 BuyOrRent()
         elif repeat=='P' or repeat=='p':
                 publish()    
                 bill()
+        elif  repeat=='E' or repeat=='e':
+                sys.exit("thank you for visiting us.")  
 
         
     def bill():
