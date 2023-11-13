@@ -2,12 +2,11 @@
 Its the base of the home page part which mycursoreates the basic tables. and braches out to others.
 '''
 import mysql.connector
-mydb = mysql.connector.connect(host='localhost', password='cbseproject', user='root')  # enter your password
-if mydb.is_connected():
-        print('connection with python is established...')
-        mycursor = mydb.cursor()
-
-        # mycursoreating and using database
+passw=input("Enter your mysql password: ")
+mydb = mysql.connector.connect(host='localhost', password=passw, user='root') 
+       
+ mycursor = mydb.cursor()
+      
 try:
         cmd = 'create database library'
         mycursor.execute(cmd)
