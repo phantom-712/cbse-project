@@ -2,11 +2,11 @@
 Its the base of the home page part which mycursoreates the basic tables. and braches out to others.
 '''
 import mysql.connector
-passw=input("Enter your mysql password: ")
+passw=input("Enter you mysql password: ")
 mydb = mysql.connector.connect(host='localhost', password=passw, user='root') 
-       
- mycursor = mydb.cursor()
-      
+
+mycursor = mydb.cursor()
+
 try:
         cmd = 'create database library'
         mycursor.execute(cmd)
@@ -109,11 +109,11 @@ def homepage():
         l = [b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15, b16, b17, b18, b19, b20, b21, b22,b23, b24, b25, b26, b27, b28, b29, b30, b31, b32, b33, b34, b35, b36, b37, b38, b39, b40, b41, b42,b43, b44, b45, b46, b47, b48, b49, b50, b51, b52, b53, b54, b55, b56, b57, b58, b59, b60, b61, b62,b63, b64, b65, b66, b67, b68, b69, b70, b71, b72, b73, b74, b75]
         for i in range(75):
             sn = l[i][0]
-            name = l[i][1]
+            Bookname = l[i][1]
             author = l[i][2]
             genre = l[i][3]
             agelimit = l[i][4]
-            ins = "insert into booklist values({},'{}','{}','{}','{}')".format(sn, name, author, genre, agelimit)
+            ins = "insert into booklist values({},'{}','{}','{}','{}')".format(sn, Bookname, author, genre, agelimit)
             mycursor.execute(ins)
             mydb.commit()
 
@@ -126,12 +126,12 @@ def homepage():
             slot_no = 75
             for i in range(n):
                 slot_no += 1
-                name = input('Enter name of book: ')
+                Bookname = input('Enter name of book: ')
                 author = input('Enter name of the author of book: ')
                 genre = input('Enter genre of book: ')
                 agelimit = input('Enter age limit: ')
                 print('\n')
-                ins = "insert into booklist value({},'{}','{}','{}','{}')".format(slot_no, name, author, genre,agelimit)
+                ins = "insert into booklist value({},'{}','{}','{}','{}')".format(slot_no, Bookname, author, genre,agelimit)
                 mycursor.execute(ins)
                 mydb.commit()
 
@@ -153,7 +153,7 @@ def homepage():
                     return 0
 
                 else:
-                    mycursor.execute("select * from booklist where name=%s",(Bk,))
+                    mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
                     for i in mycursor:
                         print(i)
                     if Nom == 2:
@@ -176,7 +176,7 @@ def homepage():
                     print("We see that you are not interested in these books, please select from other options: ") 
                     return 0
                 else:
-                    mycursor.execute("select * from booklist where name=%s",(Bk,))
+                    mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
                     for i in mycursor:
                         print(i)
                     if Nom == 2:
