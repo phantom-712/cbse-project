@@ -391,7 +391,8 @@ def start_menu():
     if ch=="N":
             newcust=1
             custname=input("Welcome aboard!\nPlease enter your name: ")
-    elif (ch,) in x:#means an existing user
+    mycursor.execute("select code from oc")
+    elif (ch,) in mycursor:#means an existing user
                     time_delay()
                     print("Glad to have an existing customer back.You will be receiving a special discount at the end. Just enter the code - 'UNREAL' ") 
        
