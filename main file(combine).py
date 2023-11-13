@@ -164,7 +164,7 @@ def homepage():
 
             def Popular():
                 c = 0
-                print("5 books are popular this month and have been bought by many")
+                print("4 books are popular this month and have been bought by many")
                 print("1. MY SISTER, THE SERIAL KILLER")
                 print("2. FAHRENHEIT 451")
                 print("3. IN SEARCH OF LOST TIME")
