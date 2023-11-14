@@ -3,7 +3,7 @@ Its the base of the home page part which mycursoreates the basic tables. and bra
 '''
 import sys
 import mysql.connector
-passw=input("Enter your mysql password: ")
+passw=input("Enter you mysql password: ")
 mydb = mysql.connector.connect(host='localhost', password=passw, user='root') 
 
 mycursor = mydb.cursor()
@@ -126,8 +126,6 @@ def homepage():
             if Nom in range(1,5):
                             break
             print("invalid input. Please enter a valid number from 1 to 4: ")            
-    dead_end = 0
-
     def publish():
             n = int(input("Num of books you want to publish: "))
             slot_no = 75
@@ -142,10 +140,8 @@ def homepage():
                 mycursor.execute(ins)
                 mydb.commit()
 
-    c, c1 = 0, 0
 
     def BuyOrRent():
-            dead_end = 0
             print('Enter:\n1. To see Latest in Collection \n2. To see Popular this month  \n3 To Search a book by Genre\n4.View all Books:  ')
             M=6            
             while M not in range(1,5):
@@ -156,15 +152,13 @@ def homepage():
                     
             
             def Latest():
-                c = 0
                 print("4 books have been added recently:", '\n', "1. JOURNEY TO THE CENTRE OF THE EARTH", '\n',"2. THE HARRY POTTER SERIES", '\n', "3. THE PILLARS OF THE EARTH", '\n','4. GHOST WORLD')
                 Bk = ''
                 while True:
                         Bk = (input("Enter the name of the book to get further details, else press NO: ")).upper()               
                         if Bk == "NO" or Bk == 'no':
-                                    c += 1
-                                    print("We see that you are not interested in these books, please select from other options: ")
-                                    return 0
+                                    print("We see that you are not interested in these books, please select from other options: ") 
+                                    BuyOrRent()
                         if Bk not in("JOURNEY TO THE CENTRE OF THE EARTH","THE HARRY POTTER SERIES","THE PILLARS OF THE EARTH","GHOST WORLD"):                        
                                 print("Please try again") 
                                 continue
@@ -186,7 +180,6 @@ def homepage():
                                 return (Bk.upper())                                                                
 
             def Popular():
-                c = 0
                 print("4 books are popular this month and have been bought by many")
                 print("1. MY SISTER, THE SERIAL KILLER")
                 print("2. FAHRENHEIT 451")
@@ -197,9 +190,8 @@ def homepage():
                         
                         Bk = (input("Enter the name of the book(in caps), if interested to get further details, else press NO: ")).upper()
                         if Bk == "NO" or Bk == 'no':
-                            c += 1
                             print("We see that you are not interested in these books, please select from other options: ") 
-                            return 0
+                            BuyOrRent()
                         if Bk not in("MY SISTER, THE SERIAL KILLER","FAHRENHEIT 451","IN SEARCH OF LOST TIME","LEAGUE OF LEGENDS"):
                                 print("Please try again")
                                 continue
@@ -218,7 +210,6 @@ def homepage():
                                         print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
                                 return (Bk.upper())
             def Genre():
-                c, c1 = 0, 0
                 Bk = ''
                 print("Enter the genre you want to read:", "\n", "1)FICTION", '\n', "2)SCIENCE FICTION", '\n', "3)MYSTERY",'\n', "4)NON FICTION", '\n', "5)ROMANCE", '\n', "6)HORROR", '\n', '7)AUTOBIOGRAHY', '\n','8)GRAPHIC NOVEL', '\n', "9)FAIRY TALES", '\n', "10)DRAMA", '\n')
                 g = input()
@@ -235,11 +226,11 @@ def homepage():
                         if Bk == 'NO' or Bk=="no":
                             gg = input("If u want to read a different genre, enter YES, else enter NO again: ")
                             if gg == "NO":
-                                c += 1
+                               
                                 print( "We see that you are not interested in these books, please select from other options: ")  
-                                return 0
+                                BuyOrRent()
                             else:
-                                c1 += 1
+                                Genre()
                         mycursor.execute("select Bookname from booklist ") 
                         if (Bk,) not in mycursor:
                                 print("Please try again")
@@ -259,9 +250,9 @@ def homepage():
                  while True:
                     Bk = (input("Enter the name of the book, if interested to get further details, else press NO: ")).upper()
                     if Bk == "NO" or Bk == 'no':                        
-                        c += 1
-                        print("We see that you are not interested in these books, please select from other options: ")
-                        return 0
+                        
+                        print("We see that you are not interested in these books, please select from other options: \n")
+                        BuyOrRent()
                     for i in l:
                            if Bk==i[1]:
                                    invalid_input=True
@@ -280,9 +271,7 @@ def homepage():
                                 return (Bk.upper())
 
             
-        
-            if c != 0:
-                dead_end += 1
+
             if M == 1:
                 Book_=Latest()
             elif M == 2:
@@ -291,8 +280,6 @@ def homepage():
                 Book_=Genre()
             elif M==4:
                 Book_=ViewAll()
-            if c1 != 0:
-                Genre()
             return(Book_)
 
         # c au c1 ra purpose plz explain.
@@ -303,18 +290,16 @@ def homepage():
     if Nom == 1:
         publish()
         print("Your book(s) have been successfully published.")
-    if Nom == 2 and dead_end==0:
+    if Nom == 2:
         book = BuyOrRent()
         cart.append(book)
         # direct to checkout fn/end fn
             
-    if Nom == 3 and dead_end==0:
+    if Nom == 3:
         book = BuyOrRent()
         cart.append(book)
         # direct to checkout fn/end fn
-
-    if dead_end != 0:
-        BuyOrRent()   
+ 
                  
     if Nom == 4:
         sys.exit('Thank you for visitng UNREAL LIBRARY.')
@@ -457,9 +442,3 @@ default()
 start_menu()
 homepage()    
 end_menu()
-'''
-errors to fix - 
-when user enters NO
-after buying 2 or more books discount is not applied
-etc/
-'''
