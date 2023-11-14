@@ -101,7 +101,7 @@ b67 = [67, "LEAGUE OF LEGENDS", "RIOT GAMES", "FAIRY TALE", "PG-13"]
 b68 = [68, "THE QUEEN OF NOTHING", "HOLLY BLACK", "FAIRY TALE", "PG-13"]
 b69 = [69, "MAGIC KINGDOM", "ZENITH PUBLISHING", "FAIRY TALE", "UA"]
 b70 = [70, "HAMLET", "WILLIAM SHAKESPEARE", "DRAMA", "UA"]
-b71 = [71, "ROMEO AND JULIET", "WILLIAM SHAKESPEARE , DR. BARBARA A. MOWAT , PAUL WERSTINE", "DRAMA", "UA"]
+b71 = [71, "ROMEO AND JULIET", "WILLIAM SHAKESPEARE", "DRAMA", "UA"]
 b72 = [72, "THE FAULT IN OUR STARS", "JOHN GREEN", "DRAMA", "PG-13"]
 b73 = [73, "OTHELLO", "WILLIAM SHAKESPEARE", "DRAMA", "UA"]
 b74 = [74, "TWILIGHT", "STEPHENIE MEYER", "DRAMA", "PG-13"]
@@ -128,7 +128,7 @@ def homepage():
             print("invalid input. Please enter a valid number from 1 to 4: ")            
     def publish():
             n = int(input("Num of books you want to publish: "))
-            slot_no = 75
+            slot_no = len(l)
             for i in range(n):
                 slot_no += 1
                 Bookname = input('Enter name of book: ')
@@ -142,7 +142,7 @@ def homepage():
 
 
     def BuyOrRent():            
-            print('Enter:\n1. To see Latest in Collection \n2. To see Popular this month  \n3 To Search a book by Genre\n4.View all Books:  ')
+            print('Enter:\n1. To see Latest in Collection \n2. To see Popular this month  \n3. To Search a book by Genre\n4.View all Books:  ')
             M=6            
             while M not in range(1,5):
                     M = int(input())
@@ -212,7 +212,7 @@ def homepage():
                 print("Enter the genre you want to read:", "\n", "1)FICTION", '\n', "2)SCIENCE FICTION", '\n', "3)MYSTERY",'\n', "4)NON FICTION", '\n', "5)ROMANCE", '\n', "6)HORROR", '\n', '7)AUTOBIOGRAHY', '\n','8)GRAPHIC NOVEL', '\n', "9)FAIRY TALES", '\n', "10)DRAMA", '\n')
                 g = input().upper()
                 nombor=1
-                for i in range(75):
+                for i in range(len(l)):
                                 if l[i][3]==g:
                                         print(nombor,'.)\t',l[i],sep='')
                                         nombor+=1
@@ -334,10 +334,10 @@ def homepage():
         if newcust==0 : # 1 for new cust and 0 for old     
             discode=input("Enter code for discount if you have any code else enter c: ")
             if discode=="UNREAL" or discode == 'unreal':
-                amt-=500    
+                amt-=(time*50)    
         elif newcust==1:
                 print("You got a newcomer discount of ₹200")
-                amt-=200
+                amt-=(time*20)
         print("Total amount  = ₹",amt)
         print("Mode of payment will be Cash On Delivery.\nThank you for renting a book from us")      
     
@@ -396,36 +396,43 @@ def start_menu():
 def end_menu():#calculation  of total amount billing address discount add here.
                 print("We would like to give you a special reward")
                 time_delay()
-                cc=input("Please enter a 4 digit user code: ")
-        
-                mycursor.execute("select code from oc")
+                if newcust==1:
+                    cc=input("Please enter a 4 digit user code: ")
+                    mycursor.execute("select code from oc")
                                                      
         
-                while True:
-                        choice=1                        
-                        for existingcode in mycursor:
-                            if existingcode == (cc,):
-                                    choice=-1
-                                    break
+                    while True:
+                            choice=1                        
+                            for existingcode in mycursor:
+                                if existingcode == (cc,):
+                                        choice=-1
+                                        break
                  
-                        if choice==-1:
-                            print('This user code already exist .Please Try again!')
-                            cc=input()
-                        else:
-                            break
+                            if choice==-1:
+                                print('This user code already exist .Please Try again!')
+                                cc=input()
+                            else:
+                                break
             
-                print("You will be using this code to avail a discount in your next visit")
+                    print("You will be using this code to avail a discount in your next visit")
                 
-                ins="insert into oc values('{}','{}')".format(custname,cc)
-                mycursor.execute(ins)
-                mydb.commit()
+                    ins="insert into oc values('{}','{}')".format(custname,cc)
+                    mycursor.execute(ins)
+                    mydb.commit()
+                elif newcust==0:
+                        pass
                 cf = input("to enter feedback press f and any other key to exit")
                 if cf=="f" or cf=="F":            
-                       feed=input("Please enter feedback: ")
-                       time_delay()
-                       print("Thank you for the feedback and for visiting Unreal Library. We hope you had a great experience")
+                        feed=input("Please enter feedback: ")
+                        time_delay()
+                        print("Thank you for the feedback and for visiting Unreal Library. We hope you had a great experience")
                 else:  
-                       print("Thank you for visiting Unreal Library. We hope you had a great experience")
+                        print("Thank you for visiting Unreal Library. We hope you had a great experience")
+
+               
+                        
+                        
+                        
 
                      
 
