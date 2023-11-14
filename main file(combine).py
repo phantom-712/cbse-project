@@ -274,8 +274,8 @@ def homepage():
                                 print("To buy the book-", Bk, '/t', "You have to pay ₹1000")
                  if Nom == 3:
                                 print("To rent the book-", Bk, '/t', "You have to pay ₹100 per week")
-                                cart.append(Bk) 
-                                return (Bk)
+                 cart.append(Bk) 
+                 return (Bk)
 
             if M == 1:
                 Book_=Latest()
@@ -352,7 +352,9 @@ def homepage():
         print("Mode of payment will be Cash On Delivery.\nThank you for renting a book from us")      
     
     if repeat=='C' or repeat=='c':
+            print(cart)
             bill()
+            
 
 def default():
     
