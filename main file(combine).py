@@ -210,12 +210,11 @@ def homepage():
             def Genre():
                 Bk = ''
                 print("Enter the genre you want to read:", "\n", "1)FICTION", '\n', "2)SCIENCE FICTION", '\n', "3)MYSTERY",'\n', "4)NON FICTION", '\n', "5)ROMANCE", '\n', "6)HORROR", '\n', '7)AUTOBIOGRAHY', '\n','8)GRAPHIC NOVEL', '\n', "9)FAIRY TALES", '\n', "10)DRAMA", '\n')
-                g = input()
+                g = input().upper()
                 nombor=1
                 for i in range(75):
                                 if l[i][3]==g:
-                                        print(nombor)
-                                        print(l[i])
+                                        print(nombor,'.)\t',l[i],sep='')
                                         nombor+=1
                 while True:
                         
