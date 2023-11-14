@@ -287,8 +287,6 @@ def homepage():
                 Book_=ViewAll()
             return(Book_)
 
-        # c au c1 ra purpose plz explain.
-
     if Nom == 1:
         publish()
         print("Your book(s) have been successfully published.")
@@ -366,7 +364,7 @@ def default():
     l=[a,b,c,d,e]
     #storing pre defined user values
     for i in range(0,5):
-        ins="insert into oc values('{}','{}')".format(l[i][0], l[i][1])#oc is table under library
+        ins="insert into oc values('{}','{}')".format(l[i][0], l[i][1])
         mycursor.execute(ins)
         mydb.commit()   
     
@@ -399,7 +397,7 @@ def start_menu():
                     time_delay()
                     print("Glad to have you back.\nYou will be receiving a special discount at the end. Just enter the code - 'UNREAL' ") 
        
-def end_menu():#calculation  of total amount billing address discount add here.
+def end_menu():
                 
                 time_delay()
                 if newcust==1:
