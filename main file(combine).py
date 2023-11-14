@@ -6,7 +6,7 @@ import mysql.connector
 passw=input("Enter you mysql password: ")
 mydb = mysql.connector.connect(host='localhost', password=passw, user='root') 
 
-mycursor = mydb.cursor()
+mycursor = mydb.cursor(buffered = True)
 cr=mydb.cursor()
 
 try:
@@ -141,7 +141,7 @@ def homepage():
                 mydb.commit()
 
 
-    def BuyOrRent():
+    def BuyOrRent():            
             print('Enter:\n1. To see Latest in Collection \n2. To see Popular this month  \n3 To Search a book by Genre\n4.View all Books:  ')
             M=6            
             while M not in range(1,5):
@@ -163,14 +163,13 @@ def homepage():
                                 print("Please try again") 
                                 continue
                         else:
-                                try:
-                                    mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
-                                    for i in mycursor:
+                                
+                                mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
+                                for i in mycursor:
                                         print(i)
                                         break
                                     
-                                except mysql.connector.errors.InternalError:
-                                    pass
+                                
                                 
                                 
                                 if Nom == 2:
@@ -196,14 +195,13 @@ def homepage():
                                 print("Please try again")
                                 continue
                         else:
-                                try:
-                                    mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
-                                    for i in mycursor:
+                                
+                                mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
+                                for i in mycursor:
                                         print(i)
                                         break
                                     
-                                except mysql.connector.errors.InternalError:
-                                    pass
+                                
                                 if Nom == 2:
                                         print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                                 if Nom == 3:
@@ -397,13 +395,13 @@ def start_menu():
                     print("Glad to have an existing customer back.You will be receiving a special discount at the end. Just enter the code - 'UNREAL' ") 
        
 def end_menu():#calculation  of total amount billing address discount add here.
-        print("We would like to give you a special reward")
-        time_delay()
-        cc=input("Please enter a 4 digit user code: ")
-        try:
+                print("We would like to give you a special reward")
+                time_delay()
+                cc=input("Please enter a 4 digit user code: ")
+        
                 cr.execute("select code from oc")
                                                      
-        except mysql.connector.errors.InternalError:
+        
                 while True:
                         choice=1                        
                         for existingcode in mycursor:
@@ -418,20 +416,18 @@ def end_menu():#calculation  of total amount billing address discount add here.
                             break
             
                 print("You will be using this code to avail a discount in your next visit")
-                try:
-                    ins="insert into oc values('{}','{}')".format(custname,cc)
-                    cr.execute(ins)
-                    mydb.commit()
-                    cf = input("to enter feedback press f and any other key to exit")
-                    if cf=="f" or cf=="F":            
+                
+                ins="insert into oc values('{}','{}')".format(custname,cc)
+                mycursor.execute(ins)
+                mydb.commit()
+                cf = input("to enter feedback press f and any other key to exit")
+                if cf=="f" or cf=="F":            
                        feed=input("Please enter feedback: ")
                        time_delay()
                        print("Thank you for the feedback and for visiting Unreal Library. We hope you had a great experience")
-                    else:  
+                else:  
                        print("Thank you for visiting Unreal Library. We hope you had a great experience")
-                    
-                except mysql.connector.errors.InternalError:
-                     pass
+
                      
 
 newcust=0
