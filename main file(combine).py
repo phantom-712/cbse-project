@@ -399,7 +399,7 @@ def end_menu():#calculation  of total amount billing address discount add here.
                 time_delay()
                 cc=input("Please enter a 4 digit user code: ")
         
-                cr.execute("select code from oc")
+                mycursor.execute("select code from oc")
                                                      
         
                 while True:
