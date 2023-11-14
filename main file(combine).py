@@ -127,6 +127,7 @@ def homepage():
                             break
             print("invalid input. Please enter a valid number from 1 to 4: ")            
     def publish():
+            multip=0
             n = int(input("Num of books you want to publish: "))
             slot_no = len(l)
             for i in range(n):
@@ -143,7 +144,8 @@ def homepage():
 
     def BuyOrRent():            
             print('Enter:\n1. To see Latest in Collection \n2. To see Popular this month  \n3. To Search a book by Genre\n4.View all Books:  ')
-            M=6            
+            M=6
+            multi=0
             while M not in range(1,5):
                     M = int(input())
                     if M in range(1,5):
@@ -168,10 +170,7 @@ def homepage():
                                 for i in mycursor:
                                         print(i)
                                         break
-                                    
-                                
-                                
-                                
+                         
                                 if Nom == 2:
                                         print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                                 if Nom == 3:
@@ -210,7 +209,7 @@ def homepage():
             def Genre():
                 Bk = ''
                 print("Enter the genre you want to read:", "\n", "1)FICTION", '\n', "2)SCIENCE FICTION", '\n', "3)MYSTERY",'\n', "4)NON FICTION", '\n', "5)ROMANCE", '\n', "6)HORROR", '\n', '7)AUTOBIOGRAHY', '\n','8)GRAPHIC NOVEL', '\n', "9)FAIRY TALES", '\n', "10)DRAMA", '\n')
-                g = input().upper()
+                g = (input()).upper()
                 nombor=1
                 for i in range(len(l)):
                                 if l[i][3]==g:
@@ -267,8 +266,6 @@ def homepage():
                                 print("To rent the book-", Bk, '/t', "You have to pay ₹100 per week")
                                 return (Bk.upper())
 
-            
-
             if M == 1:
                 Book_=Latest()
             elif M == 2:
@@ -280,9 +277,6 @@ def homepage():
             return(Book_)
 
         # c au c1 ra purpose plz explain.
-
-
-        
 
     if Nom == 1:
         publish()
@@ -300,10 +294,14 @@ def homepage():
                  
     if Nom == 4:
         sys.exit('Thank you for visitng UNREAL LIBRARY.')
-    else  :        
-        repeat=input("Enter A to purchase another book or P to publish a book or E to exit or C to continue with billing:  ")
+    else  :
+       while True:     
+        repeat=input("Enter A to purchase another book ,P to publish a book,E to exit the library or C to continue with billing:  ")
         if repeat=='A' or repeat=='a':
                 BuyOrRent()
+                multi=1
+        if multi!=1:
+                break
         elif  repeat=='E' or repeat=='e':
                 sys.exit("thank you for visiting us.")        
 
@@ -344,8 +342,12 @@ def homepage():
     if repeat=='C' or repeat=='c':
             bill()     
     if repeat=='P' or repeat=='p':
-                publish()    
-                bill()        
+            while True:
+                publish()
+                multip=1
+                if multi!=1:
+                   break
+                       
 
 
 
@@ -360,7 +362,7 @@ def default():
     #storing pre defined user values
     for i in range(0,5):
         ins="insert into oc values('{}','{}')".format(l[i][0], l[i][1])#oc is table under library
-        cr.execute(ins)
+        mycursor.execute(ins)
         mydb.commit()   
     
 def time_delay():
@@ -372,11 +374,11 @@ def start_menu():
     print("\t\t\t\t\tUNREAL LIBRARY")
     print("WELCOME!")
     time_delay()
-    print("Unreal Library is your go-to virtual library for buying,renting and selling books")
+    print("Unreal Library is your go-to virtual library for buying,renting and selling books.\n")
     time_delay()
-    print("But before that we would like to know if you are an existing user or new user.")
-    time_delay()    
-    ch=input("if existing user,enter the user-code or press N for new user: ")    
+    print("But before that we would like to know if you are an existing user or new user.\n")
+    
+    ch=input("If existing user,enter the user-code or press N for new user: ")    
     while True:
             mycursor.execute("select code from oc")
             if ch=="N"or ch =="n":
@@ -384,14 +386,13 @@ def start_menu():
             elif (ch,) in mycursor:
                     break
             else:
-                    print("enter again")
-                    ch=input()
+                    ch=input("Enter again: ")
     if ch=="N" or ch=='n':
             newcust=1
             custname=input("Welcome aboard!\nPlease enter your name: ")
     else:
                     time_delay()
-                    print("Glad to have an existing customer back.You will be receiving a special discount at the end. Just enter the code - 'UNREAL' ") 
+                    print("Glad to have you back.\nYou will be receiving a special discount at the end. Just enter the code - 'UNREAL' ") 
        
 def end_menu():#calculation  of total amount billing address discount add here.
                 print("We would like to give you a special reward")
