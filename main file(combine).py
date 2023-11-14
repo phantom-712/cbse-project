@@ -143,7 +143,7 @@ def homepage():
 
 
     def BuyOrRent():            
-            print('Enter:\n1. To see Latest in Collection \n2. To see Popular this month  \n3. To Search a book by Genre\n4.View all Books:  ')
+            print('Enter:\n1. To see Latest in Collection \n2. To see Popular this month  \n3. To Search a book by Genre\n4. View all Books:  ')
             M=6
             multi=0
             while M not in range(1,5):
@@ -157,7 +157,9 @@ def homepage():
                 print("4 books have been added recently:", '\n', "1. JOURNEY TO THE CENTRE OF THE EARTH", '\n',"2. THE HARRY POTTER SERIES", '\n', "3. THE PILLARS OF THE EARTH", '\n','4. GHOST WORLD')
                 Bk = ''
                 while True:
-                        Bk = (input("Enter the name of the book to get further details, else press NO: ")).upper()               
+                        Bk = input("Enter the name of the book to get further details, else press NO: ")
+                        Bk=Bk.upper()
+                        
                         if Bk == "NO" or Bk == 'no':
                                     print("We see that you are not interested in these books, please select from other options: ") 
                                     BuyOrRent()
@@ -186,7 +188,9 @@ def homepage():
                 Bk = ''
                 while True:
                         
-                        Bk = (input("Enter the name of the book(in caps), if interested to get further details, else press NO: ")).upper()
+                        Bk = input("Enter the name of the book(in caps), if interested to get further details, else press NO: ")
+                        Bk=Bk.upper()
+                        
                         if Bk == "NO" or Bk == 'no':
                             print("We see that you are not interested in these books, please select from other options: ") 
                             BuyOrRent()
@@ -217,7 +221,8 @@ def homepage():
                                         nombor+=1
                 while True:
                         
-                        Bk = (input("Enter the name of the book you want to buy, if not press NO: ")).upper()
+                        Bk = input("Enter the name of the book you want to buy, if not press NO: ")
+                        Bk=Bk.upper()
                 
                         if Bk == 'NO' or Bk=="no":
                             gg = input("If u want to read a different genre, enter YES, else enter NO again: ")
@@ -230,6 +235,7 @@ def homepage():
                         mycursor.execute("select Bookname from booklist ") 
                         if (Bk,) not in mycursor:
                                 print("Please try again")
+                                Bk=input()
                                 continue                            
                         else:
                             if Nom == 2:
@@ -244,7 +250,9 @@ def homepage():
                  for i in l:
                          print(i)
                  while True:
-                    Bk = (input("Enter the name of the book, if interested to get further details, else press NO: ")).upper()
+                    Bk = input("Enter the name of the book, if interested to get further details, else press NO: ")
+                    Bk=Bk.upper()
+                    
                     if Bk == "NO" or Bk == 'no':                        
                         
                         print("We see that you are not interested in these books, please select from other options: \n")
@@ -302,8 +310,10 @@ def homepage():
                 multi=1
         if multi!=1:
                 break
-        elif  repeat=='E' or repeat=='e':
-                sys.exit("thank you for visiting us.")        
+        if  repeat=='E' or repeat=='e':
+                sys.exit("thank you for visiting us.")
+        elif repeat=='C' or repeat=='c' or repeat=='P' or repeat=='p' :
+                break
 
         
     def bill():
@@ -342,10 +352,12 @@ def homepage():
     if repeat=='C' or repeat=='c':
             bill()     
     if repeat=='P' or repeat=='p':
+            
             while True:
+               if repeat=='P' or repeat=='p':    
                 publish()
                 multip=1
-                if multi!=1:
+               if multip!=1:
                    break
                        
 
@@ -438,7 +450,7 @@ def end_menu():#calculation  of total amount billing address discount add here.
                      
 
 newcust=0
-
+global multi
 bor=0#bor=2 for buying and 3 for renting
 custname=''
 default()
