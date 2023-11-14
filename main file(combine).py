@@ -254,29 +254,28 @@ def homepage():
             def ViewAll():
                  c=0
                  print("Here are all the books available in the library")
-                 try:
-                                    mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
-                                    for i in mycursor:
-                                        print(i)
-                                        break
-                                    
-                 except mysql.connector.errors.InternalError:
-                                    pass
+                 for i in l:
+                         print(i)
                  while True:
                     Bk = (input("Enter the name of the book, if interested to get further details, else press NO: ")).upper()
                     if Bk == "NO" or Bk == 'no':                        
                         c += 1
                         print("We see that you are not interested in these books, please select from other options: ")
                         return 0
-                    mycursor.execute("Select Bookname from booklist")
-                    if (Bk,) not in mycursor:
-                        print("Please enter a valid book")
-                        continue
-
+                    for i in l:
+                           if Bk==i[1]:
+                                   invalid_input=True
+                                   break
+                           else:
+                                   invalid_input=False
+                    if invalid_input==False:
+                            continue
                     else:
-                        if Nom == 2:
+                            break
+                 
+                 if Nom == 2:
                                 print("To buy the book-", Bk, '/t', "You have to pay ₹1000")
-                        if Nom == 3:
+                 if Nom == 3:
                                 print("To rent the book-", Bk, '/t', "You have to pay ₹100 per week")
                                 return (Bk.upper())
 
@@ -331,6 +330,7 @@ def homepage():
      if Nom==2: 
         n= len(cart)
         amt = n*1000
+        print("\n\n")
         for i in range(n):
             print(i+1,cart[i],"₹1000",sep="\t")
                 
@@ -394,9 +394,9 @@ def start_menu():
     time_delay()
     print("But before that we would like to know if you are an existing user or new user.")
     time_delay()    
-    ch=input("if existing user,enter the user-code or press N for new user: ")
-    cr.execute("select code from oc")
+    ch=input("if existing user,enter the user-code or press N for new user: ")    
     while True:
+            mycursor.execute("select code from oc")
             if ch=="N"or ch =="n":
                     break
             elif (ch,) in mycursor:
@@ -458,11 +458,3 @@ start_menu()
 homepage()    
 end_menu()
 
-'''
-ERRORS TO FIX-
-latest/popular/genre - ei sabu bhitaru jadi kichi icha helani user ku full book list ta dekheidaba
-exit option after buying a book
-print all details of the book
-error in line 356 nc,cc jinsa
-etc.
-'''
