@@ -176,7 +176,8 @@ def homepage():
                                         print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                                 if Nom == 3:
                                          print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
-                                return (Bk.upper())                                                                
+                                cart.append(Bk)        
+                                return (Bk)                                                                
 
             def Popular():
                 print("4 books are popular this month and have been bought by many")
@@ -208,7 +209,8 @@ def homepage():
                                         print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                                 if Nom == 3:
                                         print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
-                                return (Bk.upper())
+                                cart.append(Bk) 
+                                return (Bk)
             def Genre():
                 Bk = ''
                 print("Enter the genre you want to read:", "\n", "1)FICTION", '\n', "2)SCIENCE FICTION", '\n', "3)MYSTERY",'\n', "4)NON FICTION", '\n', "5)ROMANCE", '\n', "6)HORROR", '\n', '7)AUTOBIOGRAHY', '\n','8)GRAPHIC NOVEL', '\n', "9)FAIRY TALES", '\n', "10)DRAMA", '\n')
@@ -241,7 +243,8 @@ def homepage():
                                 print("To buy the book-", Bk, '\t', "You have to pay ₹1000")
                             if Nom == 3:
                                 print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
-                            return (Bk.upper())
+                            cart.append(Bk)     
+                            return (Bk)
           
             def ViewAll():
                  c=0
@@ -271,7 +274,8 @@ def homepage():
                                 print("To buy the book-", Bk, '/t', "You have to pay ₹1000")
                  if Nom == 3:
                                 print("To rent the book-", Bk, '/t', "You have to pay ₹100 per week")
-                                return (Bk.upper())
+                                cart.append(Bk) 
+                                return (Bk)
 
             if M == 1:
                 Book_=Latest()
@@ -290,12 +294,11 @@ def homepage():
         print("Your book(s) have been successfully published.")
     if Nom == 2:
         book = BuyOrRent()
-        cart.append(book)
+        
         # direct to checkout fn/end fn
             
     if Nom == 3:
         book = BuyOrRent()
-        cart.append(book)
         # direct to checkout fn/end fn
  
                  
@@ -343,7 +346,7 @@ def homepage():
         if newcust==0 : # 1 for new cust and 0 for old     
             discode=input("Enter code for discount if you have any code else enter c: ")
             if discode=="UNREAL" or discode == 'unreal':
-                amt-=(time*50)    
+                amt-=(time*25)    
         elif newcust==1:
                 print("You got a newcomer discount of ₹200")
                 amt-=(time*20)
@@ -397,9 +400,10 @@ def start_menu():
                     print("Glad to have you back.\nYou will be receiving a special discount at the end. Just enter the code - 'UNREAL' ") 
        
 def end_menu():#calculation  of total amount billing address discount add here.
-                print("We would like to give you a special reward")
+                
                 time_delay()
                 if newcust==1:
+                    print("We would like to give you a special reward")
                     cc=input("Please enter a 4 digit user code: ")
                     mycursor.execute("select code from oc")
                                                      
