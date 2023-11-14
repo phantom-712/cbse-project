@@ -127,7 +127,6 @@ def homepage():
                             break
             print("invalid input. Please enter a valid number from 1 to 4: ")            
     def publish():
-            multip=0
             n = int(input("Num of books you want to publish: "))
             slot_no = len(l)
             for i in range(n):
@@ -305,7 +304,7 @@ def homepage():
     else  :
        while True:
         multi=0
-        repeat=input("Enter A to purchase another book ,P to publish a book,E to exit the library or C to continue with billing:  ")
+        repeat=input("Enter A to purchase a book ,E to exit the library or C to continue with billing:  ")
         if repeat=='A' or repeat=='a':
                 BuyOrRent()
                 multi=1
@@ -313,11 +312,12 @@ def homepage():
                 break
         if  repeat=='E' or repeat=='e':
                 sys.exit("thank you for visiting us.")
-        elif repeat=='C' or repeat=='c' or repeat=='P' or repeat=='p' :
+
+        elif repeat=='C' or repeat=='c':
                 break
 
         
-    def bill():
+    def bill():      
      if Nom==2: 
         n= len(cart)
         amt = n*1000
@@ -352,15 +352,6 @@ def homepage():
     
     if repeat=='C' or repeat=='c':
             bill()
-    while True:
-               if repeat=='P' or repeat=='p':    
-                publish()
-                multip=1
-               if multip!=1:
-                   break
-                       
-
-
 
 def default():
     
@@ -440,13 +431,6 @@ def end_menu():#calculation  of total amount billing address discount add here.
                         print("Thank you for the feedback and for visiting Unreal Library. We hope you had a great experience")
                 else:  
                         print("Thank you for visiting Unreal Library. We hope you had a great experience")
-
-               
-                        
-                        
-                        
-
-                     
 
 newcust=0
 global multi
