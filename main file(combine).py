@@ -3,7 +3,7 @@ Its the base of the home page part which mycursoreates the basic tables. and bra
 '''
 import sys
 import mysql.connector
-passw=input("Enter you mysql password: ")
+passw=input("Enter your mysql password: ")
 mydb = mysql.connector.connect(host='localhost', password=passw, user='root') 
 
 mycursor = mydb.cursor()
@@ -457,4 +457,9 @@ default()
 start_menu()
 homepage()    
 end_menu()
-
+'''
+errors to fix - 
+when user enters NO
+after buying 2 or more books discount is not applied
+etc/
+'''
