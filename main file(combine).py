@@ -303,7 +303,8 @@ def homepage():
     if Nom == 4:
         sys.exit('Thank you for visitng UNREAL LIBRARY.')
     else  :
-       while True:     
+       while True:
+        multi=0
         repeat=input("Enter A to purchase another book ,P to publish a book,E to exit the library or C to continue with billing:  ")
         if repeat=='A' or repeat=='a':
                 BuyOrRent()
@@ -350,10 +351,8 @@ def homepage():
         print("Mode of payment will be Cash On Delivery.\nThank you for renting a book from us")      
     
     if repeat=='C' or repeat=='c':
-            bill()     
-    if repeat=='P' or repeat=='p':
-            
-            while True:
+            bill()
+    while True:
                if repeat=='P' or repeat=='p':    
                 publish()
                 multip=1
