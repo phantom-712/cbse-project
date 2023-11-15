@@ -162,9 +162,9 @@ def homepage():
                         if Bk == "NO" or Bk == 'no':
                                     print("We see that you are not interested in these books, please select from other options: ") 
                                     BuyOrRent()
-                        if Bk not in("JOURNEY TO THE CENTRE OF THE EARTH","THE HARRY POTTER SERIES","THE PILLARS OF THE EARTH","GHOST WORLD"):                        
-                                print("Please try again") 
-                                continue
+                        elif Bk not in("JOURNEY TO THE CENTRE OF THE EARTH","THE HARRY POTTER SERIES","THE PILLARS OF THE EARTH","GHOST WORLD"):                        
+                              print("Please try again") 
+                              continue
                         else:
                                 
                                 mycursor.execute("select * from booklist where Bookname=%s",(Bk,))
@@ -177,7 +177,8 @@ def homepage():
                                 if Nom == 3:
                                          print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
                                 cart.append(Bk)        
-                                return (Bk)                                                                
+                                return (Bk)
+                                
 
             def Popular():
                 print("4 books are popular this month and have been bought by many")
@@ -194,7 +195,7 @@ def homepage():
                         if Bk == "NO" or Bk == 'no':
                             print("We see that you are not interested in these books, please select from other options: ") 
                             BuyOrRent()
-                        if Bk not in("MY SISTER, THE SERIAL KILLER","FAHRENHEIT 451","IN SEARCH OF LOST TIME","LEAGUE OF LEGENDS"):
+                        elif Bk not in("MY SISTER, THE SERIAL KILLER","FAHRENHEIT 451","IN SEARCH OF LOST TIME","LEAGUE OF LEGENDS"):
                                 print("Please try again")
                                 continue
                         else:
