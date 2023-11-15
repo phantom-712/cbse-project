@@ -1,9 +1,7 @@
-'''
-Its the base of the home page part which mycursoreates the basic tables. and braches out to others.
-'''
+#PROJECT DONE BY SHATAAYU MOHANTY,ANSUMAN PATRA,ANWESH DASH,SIDDHARTH ANAND,BHOUMES MAHAPATRA
 import sys
 import mysql.connector
-passw=input("Enter you mysql password: ")
+passw=input("Enter your mysql password: ")
 mydb = mysql.connector.connect(host='localhost', password=passw, user='root') 
 
 mycursor = mydb.cursor(buffered = True)
@@ -42,7 +40,7 @@ b8 = [8, "PRIDE AND PREJUDICE", "JANE AUSTEN", "FICTION", "PG-13"]
 b9 = [9, "IN SEARCH OF LOST TIME", "MARCEL PROUST", "FICTION", "PG-13"]
 b10 = [10, "HUCKLEBERRY FINN", "MARK TWAIN", "FICTION", "PG-13"]
 b11 = [11, "THE LORD OF THE RINGS", "J.R.R. TOLKIEN", "FICTION", "PG-13"]
-b12 = [12, "A GAME OF THRONES", "GEORGE R.R. MARTIN", "FICTION", "R"]
+b12 = [12, "GAME OF THRONES", "GEORGE R.R. MARTIN", "FICTION", "R"]
 b13 = [13, "FRANKENSTEIN", "MARY WOLLSTONECRAFT SHELLY", "SCIENCE FICTION", "PG-13"]
 b14 = [14, "JOURNEY TO THE CENTRE OF THE EARTH", "JULES VERNE", "SCIENCE FICTION", "PG-13"]
 b15 = [15, "THE TIME MACHINE", "H.G.WELLS", "SCIENCE FICTION", "UA"]
@@ -119,7 +117,7 @@ for i in range(75):
 
 def homepage():
     # inserting values to booklist   
-    print("Enter:", '\n',"1. if you want to publish your book(s)\n\n 2. if you want to Buy a book,\n\n 3. if you want to rent a book\n\n 4. Exit\n")
+    print("\nEnter:", '\n',"1. if you want to publish your book(s)\n\n 2. if you want to Buy a book,\n\n 3. if you want to rent a book\n\n 4. Exit\n")
     Nom = 6
     while Nom not in range(1,5):
             Nom = int(input())
@@ -142,7 +140,7 @@ def homepage():
 
 
     def BuyOrRent():            
-            print('Enter:\n1. To see Latest in Collection \n2. To see Popular this month  \n3. To Search a book by Genre\n4. View all Books:  ')
+            print('\nEnter:\n1. To see Latest in Collection \n2. To see Popular this month  \n3. To Search a book by Genre\n4. View all Books:  ')
             M=6
             multi=0
             while M not in range(1,5):
@@ -162,6 +160,7 @@ def homepage():
                         if Bk == "NO" or Bk == 'no':
                                     print("We see that you are not interested in these books, please select from other options: ") 
                                     BuyOrRent()
+                                    break
                         elif Bk not in("JOURNEY TO THE CENTRE OF THE EARTH","THE HARRY POTTER SERIES","THE PILLARS OF THE EARTH","GHOST WORLD"):                        
                               print("Please try again") 
                               continue
@@ -181,7 +180,7 @@ def homepage():
                                 
 
             def Popular():
-                print("4 books are popular this month and have been bought by many")
+                print("\n4 books are popular this month and have been bought by many")
                 print("1. MY SISTER, THE SERIAL KILLER")
                 print("2. FAHRENHEIT 451")
                 print("3. IN SEARCH OF LOST TIME")
@@ -195,6 +194,7 @@ def homepage():
                         if Bk == "NO" or Bk == 'no':
                             print("We see that you are not interested in these books, please select from other options: ") 
                             BuyOrRent()
+                            break
                         elif Bk not in("MY SISTER, THE SERIAL KILLER","FAHRENHEIT 451","IN SEARCH OF LOST TIME","LEAGUE OF LEGENDS"):
                                 print("Please try again")
                                 continue
@@ -212,9 +212,10 @@ def homepage():
                                         print("To rent the book-", Bk, '\t', "You have to pay ₹100 per week")
                                 cart.append(Bk) 
                                 return (Bk)
+                        
             def Genre():
                 Bk = ''
-                print("Enter the genre you want to read:", "\n", "1)FICTION", '\n', "2)SCIENCE FICTION", '\n', "3)MYSTERY",'\n', "4)NON FICTION", '\n', "5)ROMANCE", '\n', "6)HORROR", '\n', '7)AUTOBIOGRAHY', '\n','8)GRAPHIC NOVEL', '\n', "9)FAIRY TALES", '\n', "10)DRAMA", '\n')
+                print("\nEnter the GENRE you want to read:", "\n", "1)FICTION", '\n', "2)SCIENCE FICTION", '\n', "3)MYSTERY",'\n', "4)NON FICTION", '\n', "5)ROMANCE", '\n', "6)HORROR", '\n', '7)AUTOBIOGRAHY', '\n','8)GRAPHIC NOVEL', '\n', "9)FAIRY TALES", '\n', "10)DRAMA", '\n')
                 g = (input()).upper()
                 nombor=1
                 for i in range(len(l)):
@@ -232,8 +233,10 @@ def homepage():
                                
                                 print( "We see that you are not interested in these books, please select from other options: ")  
                                 BuyOrRent()
+                                break
                             else:
                                 Genre()
+                                break
                         mycursor.execute("select Bookname from booklist ") 
                         if (Bk,) not in mycursor:
                                 print("Please try again")
@@ -260,6 +263,7 @@ def homepage():
                         
                         print("We see that you are not interested in these books, please select from other options: \n")
                         BuyOrRent()
+                        break
                     for i in l:
                            if Bk==i[1]:
                                    invalid_input=True
@@ -302,11 +306,11 @@ def homepage():
  
                  
     if Nom == 4:
-        sys.exit('Thank you for visitng UNREAL LIBRARY.')
+        sys.exit('\n\nThank you for visitng UNREAL LIBRARY.')
     else  :
        while True:
         multi=0
-        repeat=input("Enter A to purchase a book ,E to exit the library or C to continue with billing:  ")
+        repeat=input("\n\nEnter A to purchase a book ,\nE to exit the library, \nC to continue with billing:  ")
         if repeat=='A' or repeat=='a':
                 BuyOrRent()
                 multi=1
@@ -384,7 +388,8 @@ def start_menu():
     time_delay()
     print("But before that we would like to know if you are an existing user or new user.\n")
     
-    ch=input("If existing user,enter the user-code or press N for new user: ")    
+    ch=input("\n\nIf existing user,enter the user-code or press N for new user: ")
+    global newcust
     while True:
             mycursor.execute("select code from oc")
             if ch=="N"or ch =="n":
@@ -395,13 +400,14 @@ def start_menu():
                     ch=input("Enter again: ")
     if ch=="N" or ch=='n':
             newcust=1
-            custname=input("Welcome aboard!\nPlease enter your name: ")
+            custname=input("\n\nWelcome aboard!\nPlease enter your name: ")
     else:
                     time_delay()
-                    print("Glad to have you back.\nYou will be receiving a special discount at the end. Just enter the code - 'UNREAL' ") 
-       
+                    print("\n\nGlad to have you back.\nYou will be receiving a special discount at the end. Just enter the code - 'UNREAL' ")
+                    
+    print("\nThe books are stored in the format [serial no.,Book name,author,genre,age rating]\n")   
 def end_menu():
-                
+                global newcust
                 time_delay()
                 if newcust==1:
                     print("We would like to give you a special reward")
@@ -429,13 +435,13 @@ def end_menu():
                     mydb.commit()
                 elif newcust==0:
                         pass
-                cf = input("to enter feedback press f and any other key to exit")
+                cf = input("\nto enter feedback press f and any other key to exit")
                 if cf=="f" or cf=="F":            
                         feed=input("Please enter feedback: ")
                         time_delay()
-                        print("Thank you for the feedback and for visiting Unreal Library. We hope you had a great experience")
+                        print("\nThank you for the feedback and for visiting Unreal Library. We hope you had a great experience")
                 else:  
-                        print("Thank you for visiting Unreal Library. We hope you had a great experience")
+                        print("\nThank you for visiting Unreal Library. We hope you had a great experience")
 
 newcust=0
 global multi
